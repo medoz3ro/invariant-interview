@@ -10,7 +10,7 @@ import SwiftUI
 struct ShoppingListScreen: View {
     var body: some View {
         TitleView()
-        ItemCradView()
+        ItemCardView()
         NavigationView()
     }
 }
