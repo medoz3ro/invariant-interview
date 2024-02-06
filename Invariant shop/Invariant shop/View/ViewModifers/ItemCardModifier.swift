@@ -7,21 +7,18 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ItemCardModifier: ViewModifier {
     func body(content: Content) -> some View {
-        GeometryReader { geometry in
-            content
-                .frame(width: geometry.size.width * 0.95, height: 50.0)
-                .background(
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(Color("Border"), lineWidth: 1)
-                )
-                .font(.system(size: 16))
-                .foregroundColor(Color("Text"))
-                .contentShape(Rectangle())
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-        }
+        content
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.9, maxHeight: 50)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(Color.white)
+                    .shadow(color: .gray, radius: 5, x: 2, y: 2)
+            )
+            .font(.system(size: 16))
+            .foregroundColor(Color("Text"))
+            .contentShape(RoundedRectangle(cornerRadius: 14))
     }
 }
+

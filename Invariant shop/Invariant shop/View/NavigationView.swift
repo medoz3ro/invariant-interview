@@ -9,33 +9,54 @@ import SwiftUI
 
 struct NavigationView: View {
     var body: some View {
-        HStack(){
-            VStack(spacing : -35.0){
-                Image("sort").resizable() // Make sure the image is resizable
-                    .scaledToFit() // Preserve the aspect ratio of the image while scaling
-                    .scaleEffect(0.2)
-                Text("Sort")
-            }
+        VStack {
+            Spacer()
             
-            VStack(spacing : -35.0){
-                Image("plus").resizable() // Make sure the image is resizable
-                    .scaledToFit() // Preserve the aspect ratio of the image while scaling
-                    .scaleEffect(0.2)
-                Text("Add")
+            HStack {
+                Spacer()
+                
+                VStack {
+                    Image("sort").resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                    Text("Sort")
+                }
+                .padding(.top, 20)
+                
+                Spacer()
+                
+                VStack {
+                    Image("plus").resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                    Text("Add")
+                }
+                .padding(.top, 20)
+                
+                Spacer()
+                
+                VStack {
+                    Image("notes").resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                    Text("Notes")
+                }
+                .padding(.top, 20)
+                
+                Spacer()
             }
-            
-            VStack(spacing : -35.0){
-                Image("notes").resizable() // Make sure the image is resizable
-                    .scaledToFit() // Preserve the aspect ratio of the image while scaling
-                    .scaleEffect(0.2)
-                Text("Notes")
-            }
-            
+            .padding(.vertical)
+            .frame(height: 50)
         }
-        
+        .background(Color.white)
+        .shadow(color: .gray, radius: 1)
+            
     }
 }
 
 #Preview {
     NavigationView()
 }
+
+
+
