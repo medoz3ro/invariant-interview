@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct NavigationView: View {
+struct NavigationNotesView: View {
     @State private var showingAddItemView = false
     @Binding var items: [Item]
     var addItem: (Item) -> Void
@@ -54,9 +54,9 @@ struct NavigationView: View {
 
 
 
-struct NavigationView_Previews: PreviewProvider {
+struct NavigationNotesView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView(items: .constant([]), addItem: { _ in }, toggleSort: {
+        NavigationNotesView(items: .constant([]), addItem: { _ in }, toggleSort: {
             // Dummy closure for preview purposes
         })
     }

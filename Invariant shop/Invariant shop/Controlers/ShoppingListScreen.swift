@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShoppingListScreen: View {
+    @ObservedObject var rootViewManager: RootViewManager
     @State private var items: [Item] = []
     @State private var selectedItem: Item?
     @State private var currentSort: SortType = .none
@@ -79,12 +80,12 @@ struct ShoppingListScreen: View {
                         ItemCardView(item: item)
                             .onTapGesture {
                                 self.selectedItem = item
-                            }
+                        }
                     }
                     Spacer().frame(height: 70)
                 }
             }
-            NavigationView(items: $items, addItem: addItem, toggleSort: toggleSort) // Pass toggleSort function
+            NavigationShoppingView(items: $items, addItem: self.addItem, toggleSort: self.toggleSort, rootViewManager: rootViewManager)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
         }
@@ -107,6 +108,13 @@ struct ShoppingListScreen: View {
 
 
 
-#Preview {
-    ShoppingListScreen()
+struct ShoppingListScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        // Create an instance of RootViewManager for preview purposes
+        let rootViewManager = RootViewManager()
+        
+        // Pass the rootViewManager instance to ShoppingListScreen
+        ShoppingListScreen(rootViewManager: rootViewManager)
+    }
 }
+

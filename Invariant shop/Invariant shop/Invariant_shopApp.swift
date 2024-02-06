@@ -7,11 +7,31 @@
 
 import SwiftUI
 
+
+class RootViewManager: ObservableObject {
+    @Published var currentView: ViewType = .shoppingList
+
+    enum ViewType {
+        case shoppingList
+        case notesList
+    }
+}
+
+
 @main
 struct Invariant_shopApp: App {
+    @StateObject private var rootViewManager = RootViewManager()
+
     var body: some Scene {
         WindowGroup {
-            ShoppingListScreen()
+            switch rootViewManager.currentView {
+            case .shoppingList:
+                ShoppingListScreen(rootViewManager: rootViewManager)
+            case .notesList:
+                NotesListScreen() // Make sure this is the correct instantiation
+            }
         }
     }
 }
+
+
