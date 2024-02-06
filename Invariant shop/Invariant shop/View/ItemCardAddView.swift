@@ -8,29 +8,45 @@
 import SwiftUI
 
 struct ItemCardAddView: View {
+    @Environment(\.presentationMode) var presentationMode
     var addItem: (Item) -> Void
     @State private var itemName: String = ""
     @State private var itemQuantity: String = ""
 
-    var body: some View {
-        Form {
-            TextField("Item Name", text: $itemName)
-            TextField("Quantity", text: $itemQuantity)
-                .keyboardType(.numberPad)
+    var isAddButtonDisabled: Bool {
+        itemName.isEmpty || itemQuantity.isEmpty || Int(itemQuantity) == nil
+    }
 
-            Button("Add") {
-                if let quantity = Int(itemQuantity), !itemName.isEmpty {
-                    let newItem = Item(name: itemName, quantity: quantity)
-                    addItem(newItem) // Use the closure to add an item
-                    // Reset fields for the next entry
-                    itemName = ""
-                    itemQuantity = ""
-                }
+    var body: some View {
+        SwiftUI.NavigationView {
+            Form {
+                TextField("Item Name", text: $itemName)
+                TextField("Quantity", text: $itemQuantity)
+                    .keyboardType(.numberPad)
             }
+            .navigationTitle("Add Item")
+            .navigationBarItems(leading: Button("Back") {
+                if itemName.isEmpty && itemQuantity.isEmpty {
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    // Implement your logic for discard confirmation if needed
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }, trailing: Button("Add") {
+                addNewItem()
+            }.disabled(isAddButtonDisabled))
         }
-        .navigationTitle("Add Item")
+    }
+
+    private func addNewItem() {
+        if let quantity = Int(itemQuantity), !itemName.isEmpty {
+            let newItem = Item(name: itemName, quantity: quantity)
+            addItem(newItem)
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
+
 
 
 
