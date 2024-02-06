@@ -1,44 +1,46 @@
 import SwiftUI
 
-struct ItemCardEdit: View {
-    // Use this property to dismiss the current view
-    @Environment(\.presentationMode) var presentationMode
+import SwiftUI
+
+struct ItemEditView: View {
+    @Binding var item: Item? // Optional item
+    var onDismiss: () -> Void
+    var onDelete: (Item) -> Void
+
+    // Temporary state for editing
+    @State private var itemName: String = ""
+    @State private var itemQuantity: Int = 0
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                HStack {
-                    // Back button
-                    Button(action: {
-                        // Action to dismiss the current view
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image("back") // Your back button image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: geometry.size.height * 0.05)
-                            .padding(.leading)
-                    }
-                    
-                    Spacer()
-                    
-                    Text("Edit")
-                    
-                    Spacer()
-                    
-                    Image("bin") // Your bin button image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: geometry.size.height * 0.05)
-                        .padding(.trailing)
+        VStack {
+            // Bind text fields to temporary states
+            TextField("Item Name", text: $itemName)
+            TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter())
+                .keyboardType(.numberPad)
+
+            Button("Delete") {
+                if let item = item {
+                    onDelete(item)
                 }
-                .padding(.top, geometry.safeAreaInsets.top + 20)
-                
-                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .foregroundColor(.red)
+
+            Spacer()
         }
-        .edgesIgnoringSafeArea(.top)
+        .onAppear { // Correct placement of .onAppear
+            if let item = item {
+                itemName = item.name
+                itemQuantity = item.quantity
+            }
+        }
+        .navigationBarItems(trailing: Button("Done") {
+            // Update the item before dismissing if it's not nil
+            if var editingItem = item {
+                editingItem.name = itemName
+                editingItem.quantity = itemQuantity
+                item = editingItem // Update the binding
+            }
+            onDismiss()
+        })
     }
 }
-

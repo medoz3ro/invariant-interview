@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+
 struct NavigationView: View {
+    @State private var showingAddItemView = false
+    @Binding var items: [Item]
+    var addItem: (Item) -> Void
+    
     var body: some View {
         VStack {
             Spacer()
@@ -19,44 +24,50 @@ struct NavigationView: View {
                     Image("sort").resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
-                    Text("Sort")
                 }
                 .padding(.top, 20)
                 
                 Spacer()
                 
-                VStack {
-                    Image("plus").resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                    Text("Add")
-                }
-                .padding(.top, 20)
-                
-                Spacer()
+                Button(action: { showingAddItemView = true }) {
+                                    VStack {
+                                        Image(systemName: "plus") // Changed for example
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24)
+                                    }
+                                    .padding(.top, 20)
+                                }
+                                .sheet(isPresented: $showingAddItemView) {
+                                    ItemCardAddView(addItem: addItem) // Pass the closure to the add view
+                                }
+                                
+                                Spacer()
                 
                 VStack {
                     Image("notes").resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
-                    Text("Notes")
                 }
                 .padding(.top, 20)
                 
                 Spacer()
             }
             .padding(.vertical)
-            .frame(height: 50)
+            .frame(height: 40)
         }
         .background(Color.white)
         .shadow(color: .gray, radius: 1)
-            
     }
 }
 
-#Preview {
-    NavigationView()
+
+struct NavigationView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView(items: .constant([]), addItem: { _ in }) // Provide a dummy closure for previews
+    }
 }
+
 
 
 
