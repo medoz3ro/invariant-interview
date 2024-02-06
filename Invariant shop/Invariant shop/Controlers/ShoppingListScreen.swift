@@ -35,12 +35,13 @@ struct ShoppingListScreen: View {
         selectedItem = nil
     }
 
-    private func saveItem(updatedItem: Item) {
+    // Function to handle saving edited items
+    private func saveItem(_ updatedItem: Item) {
         if let index = items.firstIndex(where: { $0.id == updatedItem.id }) {
             items[index] = updatedItem
-            dataManager.saveItems(items)
+        } else {
+            print("Item not found for update; this should not happen.")
         }
-        selectedItem = nil
     }
 
     // Sorting function
@@ -68,7 +69,6 @@ struct ShoppingListScreen: View {
         }
     }
 
-
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
@@ -89,13 +89,21 @@ struct ShoppingListScreen: View {
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
         }
         .onAppear(perform: loadItems)
-        .sheet(item: $selectedItem) { _ in
-            ItemEditView(item: $selectedItem, onDismiss: {
+        .sheet(item: $selectedItem) { selectedItem in
+            ItemEditView(item: .constant(selectedItem), onDismiss: {
                 self.selectedItem = nil
-            }, onSave: saveItem, onDelete: deleteItem)
+            }, onSave: { updatedItem in
+                saveItem(updatedItem)
+            }, onDelete: { itemToDelete in
+                deleteItem(itemToDelete: itemToDelete) // Corrected function call
+            })
         }
     }
 }
+
+// Assuming the existence of DataManager, Item, ItemEditView, NavigationView, TitleView, and ItemCardView
+// Make sure you replace these placeholders with your actual implementations or references.
+
 
 
 

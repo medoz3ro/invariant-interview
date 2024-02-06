@@ -40,9 +40,20 @@ struct ItemEditView: View {
             .navigationBarItems(leading: Button("Cancel") {
                 onDismiss()
             }, trailing: Button("Save") {
-                let editingItem = Item(name: itemName, quantity: itemQuantity)
-                onSave(editingItem)
+                // Check if editing an existing item or adding a new one
+                if let existingItem = item {
+                    // Update existing item properties
+                    let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
+                    onSave(updatedItem)
+                } else {
+                    // Create a new item
+                    let newItem = Item(name: itemName, quantity: itemQuantity)
+                    onSave(newItem)
+                }
+                onDismiss() // Dismiss the view after saving
             })
+
+
             .alert(isPresented: $showingDeleteAlert) {
                 Alert(
                     title: Text("Confirm Delete"),
