@@ -24,6 +24,7 @@
 		52B398D92B72B550006A02EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398D82B72B550006A02EA /* DataManager.swift */; };
 		52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */; };
 		52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DC2B72E356006A02EA /* NavigationNotesView.swift */; };
+		52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		52B398D82B72B550006A02EA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListScreen.swift; sourceTree = "<group>"; };
 		52B398DC2B72E356006A02EA /* NavigationNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNotesView.swift; sourceTree = "<group>"; };
+		52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNotesCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				52B398CF2B71908B006A02EA /* ItemCardEdit.swift */,
 				52B398D12B725321006A02EA /* ItemCardAddView.swift */,
 				52B398DC2B72E356006A02EA /* NavigationNotesView.swift */,
+				52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				52B398C62B715E8D006A02EA /* TitleView.swift in Sources */,
 				52B398CA2B71680F006A02EA /* NavigationShoppingView.swift in Sources */,
 				52B398D92B72B550006A02EA /* DataManager.swift in Sources */,
+				52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */,
 				52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */,
 				52B398D22B725321006A02EA /* ItemCardAddView.swift in Sources */,
 				52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */,
