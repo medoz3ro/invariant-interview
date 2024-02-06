@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ShoppingListScreen: View {
     @State private var items: [Item] = []
-        @State private var selectedItem: Item? // Track selected item
-        private let dataManager = DataManager()
+    @State private var selectedItem: Item? // Track selected item
+    private let dataManager = DataManager()
 
     // Load items from UserDefaults
     private func loadItems() {
@@ -18,7 +18,6 @@ struct ShoppingListScreen: View {
     }
 
     // Function to handle adding a new item
-    // This will be passed to the ItemCardAddView
     private func addItem(_ item: Item) {
         items.append(item)
         dataManager.saveItems(items)
@@ -31,6 +30,15 @@ struct ShoppingListScreen: View {
             dataManager.saveItems(items)
             selectedItem = nil // Reset selected item to avoid accessing it after deletion
         }
+    }
+
+    // Function to handle saving item changes
+    private func saveItem(updatedItem: Item) {
+        if let index = items.firstIndex(where: { $0.id == updatedItem.id }) {
+            items[index] = updatedItem // Update the item in the array
+            dataManager.saveItems(items) // Save the updated items array to persist the changes
+        }
+        selectedItem = nil // Optionally reset selected item
     }
 
     var body: some View {
@@ -56,15 +64,13 @@ struct ShoppingListScreen: View {
         }
         .onAppear(perform: loadItems)
         .sheet(item: $selectedItem) { _ in
-                    ItemEditView(item: $selectedItem, onDismiss: {
-                        self.selectedItem = nil // Make sure to reset the selectedItem when done
-                    }, onDelete: { item in
-                        deleteItem(itemToDelete: item)
-                    })
-                }
-            
+            ItemEditView(item: $selectedItem, onDismiss: {
+                self.selectedItem = nil // Reset the selectedItem when done
+            }, onSave: saveItem, onDelete: deleteItem)
+        }
     }
 }
+
 
 
 #Preview {
