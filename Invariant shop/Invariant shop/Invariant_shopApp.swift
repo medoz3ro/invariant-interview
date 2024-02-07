@@ -28,7 +28,7 @@ struct Invariant_shopApp: App {
             case .shoppingList:
                 ShoppingListScreen(rootViewManager: rootViewManager)
             case .notesList:
-                NotesListScreen() // Make sure this is the correct instantiation
+                NotesListScreen(rootViewManager: rootViewManager)
             }
         }
     }

@@ -25,15 +25,17 @@ struct Item: Identifiable, Codable {
 
 
 struct Note: Identifiable, Codable {
-    let id: UUID // Change 'idNote' to 'id'
+    let id: UUID
     var title: String
-    var note: String
-    var creationDateNote: Date
+    var note: String?
+    var linkedItemIDs: [UUID]
+    var creationDate: Date
     
-    init(id: UUID = UUID(), title: String, note: String, creationDateNote: Date = Date()) {
+    init(id: UUID = UUID(), title: String, note: String? = nil, linkedItemIDs: [UUID] = [], creationDate: Date = Date()) {
         self.id = id
         self.title = title
         self.note = note
-        self.creationDateNote = creationDateNote
+        self.linkedItemIDs = linkedItemIDs
+        self.creationDate = creationDate
     }
 }

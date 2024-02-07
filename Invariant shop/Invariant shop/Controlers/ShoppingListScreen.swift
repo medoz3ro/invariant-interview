@@ -13,6 +13,11 @@ struct ShoppingListScreen: View {
     @State private var selectedItem: Item?
     @State private var currentSort: SortType = .none
     private let dataManager = DataManager()
+    
+    
+    public init(rootViewManager: RootViewManager) {
+            self.rootViewManager = rootViewManager
+        }
 
     enum SortType {
         case nameAscending, idDescending, none

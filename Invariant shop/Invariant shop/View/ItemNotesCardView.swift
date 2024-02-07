@@ -11,24 +11,23 @@ struct ItemCardNotesView: View {
     var note: Note
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(note.title)
-                .font(.headline)
-                .foregroundColor(.black) // Ensure text color matches
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 8) {
+                Text(note.title) // Note: assuming title is not optional
+                    .font(.headline)
+                
+                Text(note.note ?? "") // Safely unwrap the optional note and provide a default value if it's nil
+                    .font(.subheadline)
 
-            Text(note.note)
-                .font(.subheadline)
-                .foregroundColor(.secondary) // Ensure this matches the style in ItemCardView
-
-            Text("Created: \(dateFormatter.string(from: note.creationDateNote))")
-                .font(.caption)
-                .foregroundColor(.gray) // Match the font and color
+                Text("Created: \(dateFormatter.string(from: note.creationDate))")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            .padding() // Add padding if necessary
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 2)
         }
-        .padding()
-        .background(Color.white) // Match background color
-        .cornerRadius(10) // Match corner radius
-        .shadow(radius: 2) // Match shadow appearance
-        .padding(.horizontal) // Ensure consistent padding
     }
     
     private var dateFormatter: DateFormatter {
@@ -39,15 +38,18 @@ struct ItemCardNotesView: View {
     }
 }
 
+
+
+
 struct ItemCardNotesView_Previews: PreviewProvider {
     static var previews: some View {
         // Create a sample note to pass to the ItemCardNotesView
-        let sampleNote = Note(id: UUID(), title: "Sample Note", note: "This is a sample note.", creationDateNote: Date())
-        // Pass the sample note to the ItemCardNotesView
-        ItemCardNotesView(note: sampleNote)
-            .previewLayout(.sizeThatFits)
+        let sampleNote = Note(id: UUID(), title: "Sample Note", note: "This is a sample note.", creationDate: Date())
+        
+        // Embed the ItemCardNotesView in a parent container with a specified width
+        VStack {
+            ItemCardNotesView(note: sampleNote)
+        }
     }
 }
-
-
 

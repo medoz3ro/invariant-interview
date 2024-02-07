@@ -25,6 +25,7 @@
 		52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */; };
 		52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DC2B72E356006A02EA /* NavigationNotesView.swift */; };
 		52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */; };
+		52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E02B73A3A1006A02EA /* NotesAddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListScreen.swift; sourceTree = "<group>"; };
 		52B398DC2B72E356006A02EA /* NavigationNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNotesView.swift; sourceTree = "<group>"; };
 		52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNotesCardView.swift; sourceTree = "<group>"; };
+		52B398E02B73A3A1006A02EA /* NotesAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				52B398D12B725321006A02EA /* ItemCardAddView.swift */,
 				52B398DC2B72E356006A02EA /* NavigationNotesView.swift */,
 				52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */,
+				52B398E02B73A3A1006A02EA /* NotesAddView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */,
 				52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */,
 				52B398D22B725321006A02EA /* ItemCardAddView.swift in Sources */,
+				52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */,
 				52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */,
 				52B398C82B71618B006A02EA /* ItemCardView.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemCardModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.9, maxHeight: 50)
+            .frame(maxWidth: UIScreen.main.bounds.width * 1, maxHeight: 50)
             .background(
                 RoundedRectangle(cornerRadius: 14)
                     .fill(Color.white)

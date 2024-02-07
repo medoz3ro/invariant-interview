@@ -8,36 +8,55 @@
 import SwiftUI
 
 struct NotesListScreen: View {
-    // Mock data for notes
-    private var notes: [Note] = [
-        Note(id: UUID(), title: "Grocery List", note: "Eggs, Milk, Bread", creationDateNote: Date()),
-        Note(id: UUID(), title: "To-Do", note: "Call the plumber, Schedule car service", creationDateNote: Date()),
-        Note(id: UUID(), title: "Work Notes", note: "Prepare presentation for next meeting", creationDateNote: Date())
-    ]
+    
+    @ObservedObject var rootViewManager: RootViewManager
+    
+    // Inject DataManager dependency
+    private let dataManager = DataManager()
+    
+    // Track notes using State
+    @State private var notes: [Note] = []
+    
+    public init(rootViewManager: RootViewManager) {
+        self.rootViewManager = rootViewManager
+    }
     
     var body: some View {
-        VStack {
-            // Header
-            TitleView()
-                .padding(.bottom, 10)
-            
-            // List of notes
-            List(notes) { note in
-                NavigationLink(destination: Text(note.note)) { // Placeholder for detail view
-                    ItemCardNotesView(note: note)
+        NavigationView {
+            VStack {
+                // Header
+                TitleView()
+                    .padding(.bottom, 10)
+                
+                ForEach(notes) { note in
+                    if let noteText = note.note {
+                        NavigationLink(destination: Text(noteText)) {
+                            ItemCardNotesView(note: note)
+                                .frame(maxWidth: .infinity)
+                        }
+                    }
                 }
+
+                .padding(.horizontal) // Add padding to the sides
+                
+                // Bottom navigation
+                Spacer() // Pushes the bottom navigation to the bottom of the screen
+                NavigationNotesView(rootViewManager: rootViewManager)
+                    .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
+                    .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
             }
-            
-            // Bottom navigation
-            NavigationNotesView()
-                .padding(.top, 10)
+        }
+        .onAppear {
+            // Load notes from DataManager
+            notes = dataManager.loadNotes()
         }
     }
 }
 
 struct NotesHomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NotesListScreen()
+        // Create an instance of RootViewManager for the preview
+        let previewRootViewManager = RootViewManager()
+        NotesListScreen(rootViewManager: previewRootViewManager)
     }
 }
-
