@@ -27,6 +27,7 @@
 		52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */; };
 		52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E02B73A3A1006A02EA /* NotesAddView.swift */; };
 		52B398E52B7419D2006A02EA /* EditeNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E42B7419D2006A02EA /* EditeNoteView.swift */; };
+		52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E62B7420BB006A02EA /* ItemPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNotesCardView.swift; sourceTree = "<group>"; };
 		52B398E02B73A3A1006A02EA /* NotesAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAddView.swift; sourceTree = "<group>"; };
 		52B398E42B7419D2006A02EA /* EditeNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditeNoteView.swift; sourceTree = "<group>"; };
+		52B398E62B7420BB006A02EA /* ItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */,
 				52B398E02B73A3A1006A02EA /* NotesAddView.swift */,
 				52B398E42B7419D2006A02EA /* EditeNoteView.swift */,
+				52B398E62B7420BB006A02EA /* ItemPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				52B398C02B714AEF006A02EA /* ShoppingListScreen.swift in Sources */,
 				52B398C32B714C15006A02EA /* ItemCardModifier.swift in Sources */,
 				52B398CC2B7169F0006A02EA /* NavigationModifier.swift in Sources */,
+				52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */,
 				5288A9822B7127FF00F7D1C6 /* Invariant_shopApp.swift in Sources */,
 				52B398D02B71908B006A02EA /* ItemCardEdit.swift in Sources */,
 				52B398C62B715E8D006A02EA /* TitleView.swift in Sources */,
