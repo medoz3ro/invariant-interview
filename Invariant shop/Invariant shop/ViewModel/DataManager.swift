@@ -1,10 +1,8 @@
-// DataManager.swift
-
 import Foundation
 
 class DataManager {
     private let itemsKey = "items"
-    private let notesKey = "notes" // Add a key for notes
+    private let notesKey = "notes"
 
     func saveItems(_ items: [Item]) {
         let encoder = JSONEncoder()
@@ -32,11 +30,17 @@ class DataManager {
         }
     }
     
-    // Add a method to save a single note locally
     func saveNote(_ note: Note) {
         var notes = loadNotes()
-        notes.append(note)
-        
+        if let index = notes.firstIndex(where: { $0.id == note.id }) {
+            notes[index] = note // Update existing note
+        } else {
+            notes.append(note) // Add new note
+        }
+        saveNotes(notes) // Use saveNotes to save the updated array
+    }
+    
+    func saveNotes(_ notes: [Note]) {
         let encoder = JSONEncoder()
         do {
             let encoded = try encoder.encode(notes)
@@ -45,8 +49,7 @@ class DataManager {
             print("Failed to encode notes: \(error)")
         }
     }
-    
-    // Add a method to load notes from UserDefaults
+
     func loadNotes() -> [Note] {
         guard let notesData = UserDefaults.standard.data(forKey: notesKey) else {
             print("No notes found")
@@ -63,10 +66,9 @@ class DataManager {
         }
     }
     
-    // Add a method to delete a note
     func deleteNote(_ note: Note) {
         var notes = loadNotes()
         notes.removeAll { $0.id == note.id }
-        saveNote(note) // Corrected method call from saveNote to saveNotes
+        saveNotes(notes) // Correctly call saveNotes to update the list after deletion
     }
 }

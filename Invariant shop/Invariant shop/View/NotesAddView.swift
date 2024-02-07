@@ -14,7 +14,7 @@ struct AddNotesView: View {
     @State private var noteTitle: String = ""
     @State private var noteContent: String = ""
     @State private var linkedItemIDs: [UUID] = [] // IDs of linked items
-
+    
     // Assume DataManager is accessible and can provide items
     private let dataManager = DataManager()
     @State private var items: [Item] = [] // This would be fetched from DataManager
@@ -47,17 +47,16 @@ struct AddNotesView: View {
             .navigationBarItems(leading: Button("Back") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                newNote = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
-                addNote(newNote!) // Force unwrap here since it's guaranteed to exist
+                let newNoteToSave = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
+                addNote(newNoteToSave)
                 // Save the new note locally
-                if let newNote = newNote {
-                    dataManager.saveNote(newNote)
-                }
+                dataManager.saveNote(newNoteToSave) // Correctly calling saveNote for a single note.
                 presentationMode.wrappedValue.dismiss()
-            }.disabled(noteTitle.isEmpty))
+            }.disabled(noteTitle.isEmpty)) // Ensure this is within the parentheses of .navigationBarItems
             .onAppear {
                 items = dataManager.loadItems() // Load items to link
             }
+            
             // Pass the newly created note to ItemCardNotesView if it exists
             if let newNote = newNote {
                 ItemCardNotesView(note: newNote)
@@ -66,7 +65,7 @@ struct AddNotesView: View {
     }
 }
 
-    
+
 struct AddNotesView_Previews: PreviewProvider {
     static var previews: some View {
         // Provide a mock implementation of `addNote` for the preview
