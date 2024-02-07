@@ -18,6 +18,7 @@ struct AddNotesView: View {
     // Assume DataManager is accessible and can provide items
     private let dataManager = DataManager()
     @State private var items: [Item] = [] // This would be fetched from DataManager
+    @State private var newNote: Note? // Declare newNote at the appropriate scope
     
     var body: some View {
         NavigationView {
@@ -46,15 +47,21 @@ struct AddNotesView: View {
             .navigationBarItems(leading: Button("Back") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                let newNote = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
-                addNote(newNote)
+                newNote = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
+                addNote(newNote!) // Force unwrap here since it's guaranteed to exist
                 // Save the new note locally
-                dataManager.saveNote(newNote)
+                if let newNote = newNote {
+                    dataManager.saveNote(newNote)
+                }
                 presentationMode.wrappedValue.dismiss()
             }.disabled(noteTitle.isEmpty))
-        }
-        .onAppear {
-            items = dataManager.loadItems() // Load items to link
+            .onAppear {
+                items = dataManager.loadItems() // Load items to link
+            }
+            // Pass the newly created note to ItemCardNotesView if it exists
+            if let newNote = newNote {
+                ItemCardNotesView(note: newNote)
+            }
         }
     }
 }

@@ -43,13 +43,12 @@ struct ItemCardNotesView: View {
 
 struct ItemCardNotesView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a sample note to pass to the ItemCardNotesView
-        let sampleNote = Note(id: UUID(), title: "Sample Note", note: "This is a sample note.", creationDate: Date())
+        // Create a sample note for preview purposes
+        let sampleNote = Note(id: UUID(), title: "Sample Title", note: "Sample Note Content", linkedItemIDs: [], creationDate: Date())
         
-        // Embed the ItemCardNotesView in a parent container with a specified width
-        VStack {
-            ItemCardNotesView(note: sampleNote)
-        }
+        // Preview ItemCardNotesView with the sample note
+        ItemCardNotesView(note: sampleNote)
     }
 }
+
 
