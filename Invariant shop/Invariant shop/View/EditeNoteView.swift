@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct EditNoteView: View {
@@ -12,6 +11,7 @@ struct EditNoteView: View {
     @State private var linkedItemIDs: [UUID]
     @State private var showingDiscardAlert = false
     @State private var showingDeleteAlert = false
+    @State private var isShowingItemPicker = false // For showing the ItemPickerView
     
     // Assume DataManager is accessible and can provide items
     @State private var items: [Item] = []
@@ -34,11 +34,13 @@ struct EditNoteView: View {
                     .frame(height: 200)
                 
                 Section(header: Text("Linked Items")) {
-                    ForEach(items) { item in
-                        Button(item.name) {
-                            toggleItemLink(with: item.id)
+                    ForEach(linkedItemIDs, id: \.self) { itemID in
+                        if let item = items.first(where: { $0.id == itemID }) {
+                            Text(item.name)
                         }
-                        .foregroundColor(linkedItemIDs.contains(item.id) ? .blue : .primary)
+                    }
+                    Button("Add Item") {
+                        isShowingItemPicker = true // Present ItemPickerView
                     }
                 }
             }
@@ -73,6 +75,9 @@ struct EditNoteView: View {
                     secondaryButton: .cancel()
                 )
             }
+            .sheet(isPresented: $isShowingItemPicker) {
+                ItemPickerView(linkedItemIDs: $linkedItemIDs)
+            }
             .onAppear {
                 items = dataManager.loadItems() // Load items to link
             }
@@ -83,20 +88,13 @@ struct EditNoteView: View {
         return note.title != title || note.note != noteContent || note.linkedItemIDs != linkedItemIDs
     }
     
-    private func toggleItemLink(with id: UUID) {
-        if let index = linkedItemIDs.firstIndex(of: id) {
-            linkedItemIDs.remove(at: index)
-        } else {
-            linkedItemIDs.append(id)
-        }
-    }
-    
     private func saveNote() {
         let updatedNote = Note(id: note.id, title: title, note: noteContent, linkedItemIDs: linkedItemIDs, creationDate: note.creationDate)
         onSave(updatedNote)
         presentationMode.wrappedValue.dismiss()
     }
 }
+
 
 struct EditNoteView_Previews: PreviewProvider {
     static var previews: some View {
