@@ -11,9 +11,8 @@ struct EditNoteView: View {
     @State private var linkedItemIDs: [UUID]
     @State private var showingDiscardAlert = false
     @State private var showingDeleteAlert = false
-    @State private var isShowingItemPicker = false // For showing the ItemPickerView
+    @State private var isShowingItemPicker = false
     
-    // Assume DataManager is accessible and can provide items
     @State private var items: [Item] = []
     private let dataManager = DataManager()
     
@@ -34,13 +33,8 @@ struct EditNoteView: View {
                     .frame(height: 200)
                 
                 Section(header: Text("Linked Items")) {
-                    ForEach(linkedItemIDs, id: \.self) { itemID in
-                        if let item = items.first(where: { $0.id == itemID }) {
-                            Text(item.name)
-                        }
-                    }
-                    Button("Add Item") {
-                        isShowingItemPicker = true // Present ItemPickerView
+                    Button("Manage Linked Items") {
+                        isShowingItemPicker = true
                     }
                 }
             }
@@ -79,7 +73,7 @@ struct EditNoteView: View {
                 ItemPickerView(linkedItemIDs: $linkedItemIDs)
             }
             .onAppear {
-                items = dataManager.loadItems() // Load items to link
+                items = dataManager.loadItems()
             }
         }
     }
@@ -94,6 +88,7 @@ struct EditNoteView: View {
         presentationMode.wrappedValue.dismiss()
     }
 }
+
 
 
 struct EditNoteView_Previews: PreviewProvider {
