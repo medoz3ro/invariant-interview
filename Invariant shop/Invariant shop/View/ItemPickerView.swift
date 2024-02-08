@@ -6,8 +6,14 @@ struct ItemPickerView: View {
 
     @State private var filterText: String = ""
     @State private var items: [Item] = [] // This will be fetched from DataManager
+    @State private var localLinkedItemIDs: [UUID] // Local copy to handle selections
 
     private let dataManager = DataManager()
+
+    init(linkedItemIDs: Binding<[UUID]>) {
+        self._linkedItemIDs = linkedItemIDs
+        self._localLinkedItemIDs = State(initialValue: linkedItemIDs.wrappedValue)
+    }
 
     var body: some View {
         NavigationView {
@@ -21,7 +27,7 @@ struct ItemPickerView: View {
                         HStack {
                             Text(item.name)
                             Spacer()
-                            if linkedItemIDs.contains(item.id) {
+                            if localLinkedItemIDs.contains(item.id) {
                                 Image(systemName: "checkmark")
                             }
                         }
@@ -37,7 +43,8 @@ struct ItemPickerView: View {
             .navigationBarItems(leading: Button("Back") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                // Action to save the selected items or simply dismiss the view if saving is handled elsewhere
+                // Save the selections by updating the original binding
+                self.linkedItemIDs = self.localLinkedItemIDs
                 presentationMode.wrappedValue.dismiss()
             })
             .onAppear {
@@ -55,10 +62,10 @@ struct ItemPickerView: View {
     }
 
     private func toggleItemSelection(item: Item) {
-        if let index = linkedItemIDs.firstIndex(of: item.id) {
-            linkedItemIDs.remove(at: index)
+        if let index = localLinkedItemIDs.firstIndex(of: item.id) {
+            localLinkedItemIDs.remove(at: index)
         } else {
-            linkedItemIDs.append(item.id)
+            localLinkedItemIDs.append(item.id)
         }
     }
 }
