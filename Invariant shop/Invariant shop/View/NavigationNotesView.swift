@@ -11,17 +11,24 @@ struct NavigationNotesView: View {
     @State private var showingAddNotesView = false
     var rootViewManager: RootViewManager
     
+    var onSort: () -> Void
+    
     var body: some View {
         VStack {
             Spacer()
             HStack {
                 Spacer()
                 // Image for sorting or any other action
-                Image(systemName: "arrow.up.arrow.down")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-                    .padding(.top, 10)
+                Button(action: {
+                       self.onSort() // Call the sorting closure
+                   }) {
+                       Image(systemName: "arrow.up.arrow.down")
+                           .resizable()
+                           .scaledToFit()
+                           .frame(width: 24, height: 24)
+                           .padding(.top, 20)
+                           
+                   }
                 Spacer()
                 // Plus button to add notes
                 Button(action: {
@@ -31,7 +38,8 @@ struct NavigationNotesView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
-                        .padding(.top, 10)
+                        .padding(.top, 20)
+                   
                 }
                 .sheet(isPresented: $showingAddNotesView) {
                     // Present AddNotesView and provide the addNote closure
@@ -50,25 +58,25 @@ struct NavigationNotesView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
-                        .padding(.top, 10)
+                        .padding(.top, 20)
+                    
                 }
 
 
                 Spacer()
             }
-            .frame(maxWidth: .infinity)
             .padding(.vertical)
-            .background(Color.white)
-            .shadow(color: .gray, radius: 1)
+            .frame(height: 40)
         }
-        .frame(height: 40)
+        .background(Color("Bottom"))
     }
 }
 
 
 struct NavigationNotesView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationNotesView(rootViewManager: RootViewManager())
+        NavigationNotesView(rootViewManager: RootViewManager(), onSort: {})
+
     }
 }
 

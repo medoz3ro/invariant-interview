@@ -58,13 +58,24 @@ class DataManager {
 
         let decoder = JSONDecoder()
         do {
-            let notes = try decoder.decode([Note].self, from: notesData)
+            var notes = try decoder.decode([Note].self, from: notesData)
+            // Sort the notes array based on the criteria
+            notes.sort {
+                if $0.title != $1.title {
+                    return $0.title < $1.title // Ascending by title
+                } else if $0.linkedItemIDs.count != $1.linkedItemIDs.count {
+                    return $0.linkedItemIDs.count < $1.linkedItemIDs.count // Ascending by number of linked items
+                } else {
+                    return $0.id.uuidString > $1.id.uuidString // Descending by ID
+                }
+            }
             return notes
         } catch {
             print("Failed to decode notes: \(error)")
             return []
         }
     }
+
     
     func deleteNote(_ note: Note) {
         var notes = loadNotes()

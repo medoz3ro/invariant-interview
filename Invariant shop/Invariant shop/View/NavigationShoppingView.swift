@@ -44,7 +44,8 @@ struct NavigationShoppingView: View {
                 Button(action: {
                     rootViewManager.currentView = .notesList // Update this line
                 }) {
-                    Image("notes").resizable()
+                    Image("notes")
+                        .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
                         .padding(.top, 20)
@@ -54,8 +55,7 @@ struct NavigationShoppingView: View {
             .padding(.vertical)
             .frame(height: 40)
         }
-        .background(Color.white)
-        .shadow(color: .gray, radius: 1)
+        .background(Color("Bottom"))
     }
 }
 

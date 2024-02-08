@@ -27,6 +27,8 @@ struct TitleView: View {
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(Color("Text"))
         }
+        .background(Color("Title") .edgesIgnoringSafeArea(.all))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
