@@ -31,6 +31,8 @@ struct NotesListScreen: View {
             ScrollView {
                 VStack(spacing: 15) {
                     TitleView(title: "Notes")
+                        .frame(maxWidth: .infinity, alignment: .top)
+
                     
                     ForEach(notes) { note in
                         ItemCardNotesView(note: note)
@@ -39,7 +41,9 @@ struct NotesListScreen: View {
                 }
                 .padding(.bottom, 70)
             }
+            .background(Color("Title").edgesIgnoringSafeArea(.top).opacity(0))
             NavigationNotesView(rootViewManager: rootViewManager, onSort: sortNotes)
+                .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
         }
         .onAppear(perform: loadNotes)

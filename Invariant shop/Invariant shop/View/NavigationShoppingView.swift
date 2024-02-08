@@ -42,7 +42,7 @@ struct NavigationShoppingView: View {
                 }
                 Spacer()
                 Button(action: {
-                    rootViewManager.currentView = .notesList // Update this line
+                    rootViewManager.currentView = .notesList 
                 }) {
                     Image("notes")
                         .resizable()

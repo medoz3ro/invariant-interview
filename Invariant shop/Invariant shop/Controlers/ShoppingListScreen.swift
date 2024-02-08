@@ -11,7 +11,7 @@ struct ShoppingListScreen: View {
     @ObservedObject var rootViewManager: RootViewManager
     @State private var items: [Item] = []
     @State private var selectedItem: Item?
-    @State private var currentSort: SortType = .none
+    @State private var currentSort: SortType = .nameAscendingIdDescending 
     private let dataManager = DataManager()
     
     
@@ -20,8 +20,12 @@ struct ShoppingListScreen: View {
         }
 
     enum SortType {
-        case nameAscending, idDescending, none
+        case nameAscendingIdDescending
+        case nameDescendingIdAscending
     }
+
+
+
 
     private func loadItems() {
         items = dataManager.loadItems()
@@ -51,29 +55,40 @@ struct ShoppingListScreen: View {
     }
 
     // Sorting function
+    // Sorting function
     private func toggleSort() {
         switch currentSort {
-        case .none, .idDescending:
-            currentSort = .nameAscending
-            items.sort { $0.name < $1.name }
-        case .nameAscending:
-            currentSort = .idDescending
-            items.sort { $0.id > $1.id }
+        case .nameAscendingIdDescending:
+            currentSort = .nameDescendingIdAscending
+        case .nameDescendingIdAscending:
+            currentSort = .nameAscendingIdDescending
         }
-        dataManager.saveItems(items) // Optionally save the sorted list
-        // Display a subtle message here indicating the current sort type
+        sortItems() // Re-sort the items after changing the sort order
     }
+
+
     
     private func sortItems() {
         switch currentSort {
-        case .nameAscending:
-            items.sort { $0.name.lowercased() < $1.name.lowercased() }
-        case .idDescending:
-            items.sort { $0.id > $1.id }
-        case .none:
-            break // No sorting applied, or you can reset to the original order if needed
+        case .nameAscendingIdDescending:
+            items.sort {
+                if $0.name.lowercased() == $1.name.lowercased() {
+                    return $0.id.uuidString > $1.id.uuidString // For matching names, sort by ID descending
+                }
+                return $0.name.lowercased() < $1.name.lowercased() // Primary sort by name ascending
+            }
+        case .nameDescendingIdAscending:
+            items.sort {
+                if $0.name.lowercased() == $1.name.lowercased() {
+                    return $0.id.uuidString < $1.id.uuidString // For matching names, sort by ID ascending
+                }
+                return $0.name.lowercased() > $1.name.lowercased() // Primary sort by name descending
+            }
         }
     }
+
+
+
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -95,7 +110,13 @@ struct ShoppingListScreen: View {
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
         }
-        .onAppear(perform: loadItems)
+        .onAppear(perform: {
+            loadItems()
+            currentSort = .nameAscendingIdDescending // Set the initial sort order correctly
+            sortItems() // Apply initial sort
+        })
+
+
         .sheet(item: $selectedItem) { selectedItem in
             ItemEditView(item: .constant(selectedItem), onDismiss: {
                 self.selectedItem = nil
