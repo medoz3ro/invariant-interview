@@ -79,8 +79,9 @@ struct ShoppingListScreen: View {
         ZStack(alignment: .bottom) {
             ScrollView {
                 VStack(spacing: 10) {
-                    TitleView()
+                    TitleView(title: "Shopping List")
                         .frame(maxWidth: .infinity, alignment: .top)
+
                     ForEach(items) { item in
                         ItemCardView(item: item)
                             .onTapGesture {

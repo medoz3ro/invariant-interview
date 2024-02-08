@@ -17,23 +17,20 @@ struct NotesListScreen: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                VStack(spacing: 15) { // Adjust spacing here if needed
-                    TitleView()
+                VStack(spacing: 15) {
+                    TitleView(title: "Notes")
                         .frame(maxWidth: .infinity, alignment: .top)
+
                     
                     ForEach(notes) { note in
                         ItemCardNotesView(note: note)
-                            .padding(.horizontal) // Ensures padding on both sides.
-                            .fixedSize(horizontal: false, vertical: true) // Limits expansion tendency vertically.
-                            .onTapGesture {
-                                self.selectedNote = note
-                        }
-                        Spacer().frame(height: 70)
+                            .padding(.horizontal) // Adjust this if it's limiting width
+                            .frame(maxWidth: .infinity) // Ensures it expands
                     }
-                    
-                    .padding(.horizontal) // Add padding to ensure they are not edge-to-edge
+                    .padding(.horizontal) // Review necessity and placement
+
                 }
-                .padding(.bottom, 70) // Adjust bottom padding instead of using Spacer
+                .padding(.bottom, 70) // Adjust bottom padding instead of using Spacer.
             }
             NavigationNotesView(rootViewManager: rootViewManager)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)

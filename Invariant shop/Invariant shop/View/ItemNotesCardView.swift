@@ -11,23 +11,22 @@ struct ItemCardNotesView: View {
     var note: Note
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 8) {
-                Text(note.title) // Note: assuming title is not optional
-                    .font(.headline)
-                
-                Text(note.note ?? "") // Safely unwrap the optional note and provide a default value if it's nil
-                    .font(.subheadline)
+        VStack(alignment: .leading, spacing: 8) {
+            Text(note.title)
+                .font(.headline)
+            
+            Text(note.note ?? "")
+                .font(.subheadline)
 
-                Text("Created: \(dateFormatter.string(from: note.creationDate))")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-            .padding() // Add padding if necessary
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 2)
+            Text("Created: \(dateFormatter.string(from: note.creationDate))")
+                .font(.caption)
+                .foregroundColor(.gray)
         }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 2)
+        .frame(maxWidth: .infinity) // Make sure it can expand to fill the width
     }
     
     private var dateFormatter: DateFormatter {
@@ -37,6 +36,7 @@ struct ItemCardNotesView: View {
         return formatter
     }
 }
+
 
 
 
