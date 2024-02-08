@@ -45,8 +45,7 @@ struct EditNoteView: View {
         NavigationView {
             Form {
                 TextField("Title", text: $title)
-                TextEditor(text: $noteContent)
-                    .frame(height: 200)
+                TextEditor(text: $noteContent).frame(height: 200)
                 
                 Section(header: Text("Linked Items")) {
                     Button("Manage Linked Items") {

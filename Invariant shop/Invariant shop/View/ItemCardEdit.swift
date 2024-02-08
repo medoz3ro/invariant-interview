@@ -5,66 +5,72 @@ struct ItemEditView: View {
     var onDismiss: () -> Void
     var onSave: (Item) -> Void
     var onDelete: (Item) -> Void
-
+    
     @State private var itemName: String = ""
     @State private var itemQuantity: Int = 0
-    @State private var showingDeleteAlert = false
-
+    @State private var activeAlert: ActiveAlert?
+    
+    // Using the same ActiveAlert enum structure from EditNoteView for consistency
+    enum ActiveAlert: Identifiable {
+        case discardChanges, confirmDelete
+        
+        var id: Int {
+            self.hashValue
+        }
+    }
+    
     var body: some View {
-        SwiftUI.NavigationView {
-            ZStack {
-                // Main content
-                VStack(spacing: 0) {
-                    Form {
-                        TextField("Item Name", text: $itemName)
-                        TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter())
-                            .keyboardType(.numberPad)
-                    }
-                    Spacer() // This spacer does nothing in a VStack without a bottom view.
-                }
-
-                // Delete button positioned at the bottom
-                VStack {
-                    Spacer() // Pushes everything below to the bottom
-                    if item != nil {
-                        Button("Delete") {
-                            showingDeleteAlert = true
+        NavigationView {
+            VStack(spacing: 0) {
+                Form {
+                    TextField("Item Name", text: $itemName)
+                    TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
+                    
+                    
+                    Section {
+                        if item != nil {
+                            Button("Delete Item", role: .destructive) {
+                                activeAlert = .confirmDelete
+                            }
                         }
-                        .foregroundColor(.red)
-                        .frame(maxWidth: .infinity)
-                        .padding()
                     }
                 }
             }
             .navigationTitle(item != nil ? "Edit Item" : "Add Item")
             .navigationBarItems(leading: Button("Cancel") {
-                onDismiss()
-            }, trailing: Button("Save") {
-                // Check if editing an existing item or adding a new one
-                if let existingItem = item {
-                    // Update existing item properties
-                    let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
-                    onSave(updatedItem)
+                if hasChanges() {
+                    activeAlert = .discardChanges
                 } else {
-                    // Create a new item
-                    let newItem = Item(name: itemName, quantity: itemQuantity)
-                    onSave(newItem)
+                    onDismiss()
                 }
-                onDismiss() // Dismiss the view after saving
+            }, trailing: Button("Save") {
+                saveItem()
             })
-
-
-            .alert(isPresented: $showingDeleteAlert) {
-                Alert(
-                    title: Text("Confirm Delete"),
-                    message: Text("Are you sure you want to delete this item?"),
-                    primaryButton: .destructive(Text("Delete")) {
-                        if let item = item {
-                            onDelete(item)
-                        }
-                    },
-                    secondaryButton: .cancel()
-                )
+            .alert(item: $activeAlert) { alertType in
+                switch alertType {
+                case .discardChanges:
+                    return Alert(
+                        title: Text("Discard Changes?"),
+                        message: Text("Are you sure you want to discard your changes?"),
+                        primaryButton: .destructive(Text("Discard")) {
+                            onDismiss()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                case .confirmDelete:
+                    return Alert(
+                        title: Text("Confirm Delete"),
+                        message: Text("Are you sure you want to delete this item?"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            if let item = item {
+                                onDelete(item)
+                            }
+                            onDismiss()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
             .onAppear {
                 if let item = item {
@@ -73,5 +79,23 @@ struct ItemEditView: View {
                 }
             }
         }
+    }
+    
+    private func hasChanges() -> Bool {
+        guard let initialItem = item else {
+            return !(itemName.isEmpty && itemQuantity == 0)
+        }
+        return initialItem.name != itemName || initialItem.quantity != itemQuantity
+    }
+    
+    private func saveItem() {
+        if let existingItem = item {
+            let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
+            onSave(updatedItem)
+        } else {
+            let newItem = Item(name: itemName, quantity: itemQuantity)
+            onSave(newItem)
+        }
+        onDismiss()
     }
 }

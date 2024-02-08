@@ -149,8 +149,8 @@
 		52B398BE2B714AA9006A02EA /* Controlers */ = {
 			isa = PBXGroup;
 			children = (
-				52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */,
 				52B398BF2B714AEE006A02EA /* ShoppingListScreen.swift */,
+				52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";
