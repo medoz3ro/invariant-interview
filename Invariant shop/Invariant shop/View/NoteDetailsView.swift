@@ -23,13 +23,13 @@ struct NoteDetailsView: View {
                 .font(.headline)
                 .padding(.top)
             
+            
+            
             ScrollView {
                 ForEach(linkedItems) { item in
-                    Text("\(item.name) - Quantity: \(item.quantity)")
-                        .frame(maxHeight: 50)
-                        .cardStyle()
-                        .padding()
+                    ItemCardView(item: item)
                 }
+                .padding()
             }
             
             Spacer()
