@@ -7,9 +7,8 @@ struct ItemEditView: View {
     var onDelete: (Item) -> Void
     
     @State private var itemName: String = ""
-    @State private var itemQuantity: Double = 0
+    @State private var itemQuantityString: String = "" // Changed to String to manually handle input
     @State private var activeAlert: ActiveAlert?
-    
     
     enum ActiveAlert: Identifiable {
         case discardChanges, confirmDelete
@@ -21,17 +20,19 @@ struct ItemEditView: View {
     
     private func hasChanges() -> Bool {
         guard let initialItem = item else {
-            return !(itemName.isEmpty && itemQuantity == 0)
+            return !(itemName.isEmpty && itemQuantityString.isEmpty)
         }
-        return initialItem.name != itemName || initialItem.quantity != itemQuantity
+        return initialItem.name != itemName || initialItem.quantity != Double(itemQuantityString)
     }
     
     private func saveItem() {
+        guard let quantity = Double(itemQuantityString), !itemName.isEmpty else { return } // Ensure valid conversion
+        
         if let existingItem = item {
-            let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
+            let updatedItem = Item(id: existingItem.id, name: itemName, quantity: quantity, creationDate: existingItem.creationDate)
             onSave(updatedItem)
         } else {
-            let newItem = Item(name: itemName, quantity: itemQuantity)
+            let newItem = Item(name: itemName, quantity: quantity)
             onSave(newItem)
         }
         onDismiss()
@@ -42,12 +43,17 @@ struct ItemEditView: View {
             VStack(spacing: 0) {
                 Form {
                     TextField("Item Name", text: $itemName)
-                    TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter.customAmountFormatter)
+                    TextField("Quantity", text: $itemQuantityString)
                         .keyboardType(.decimalPad)
+                        .onChange(of: itemQuantityString) { newValue in
+                            let filtered = newValue.filter { "0123456789.".contains($0) }
+                            if filtered == newValue, filtered.filter({ $0 == "." }).count <= 1 {
+                                itemQuantityString = filtered // Valid input: only digits and max one decimal point
+                            } else {
+                                itemQuantityString = String(filtered.prefix(while: { $0 != "." })) + filtered.split(separator: ".").prefix(2).joined(separator: ".")
+                            }
+                        }
 
-
-                    
-                    
                     Section {
                         if item != nil {
                             Button("Delete Item", role: .destructive) {
@@ -95,7 +101,7 @@ struct ItemEditView: View {
             .onAppear {
                 if let item = item {
                     itemName = item.name
-                    itemQuantity = item.quantity
+                    itemQuantityString = "\(item.quantity)"
                 }
             }
         }
