@@ -19,6 +19,24 @@ struct ItemEditView: View {
         }
     }
     
+    private func hasChanges() -> Bool {
+        guard let initialItem = item else {
+            return !(itemName.isEmpty && itemQuantity == 0)
+        }
+        return initialItem.name != itemName || initialItem.quantity != itemQuantity
+    }
+    
+    private func saveItem() {
+        if let existingItem = item {
+            let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
+            onSave(updatedItem)
+        } else {
+            let newItem = Item(name: itemName, quantity: itemQuantity)
+            onSave(newItem)
+        }
+        onDismiss()
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -79,24 +97,5 @@ struct ItemEditView: View {
                 }
             }
         }
-    }
-    
-    
-    private func hasChanges() -> Bool {
-        guard let initialItem = item else {
-            return !(itemName.isEmpty && itemQuantity == 0)
-        }
-        return initialItem.name != itemName || initialItem.quantity != itemQuantity
-    }
-    
-    private func saveItem() {
-        if let existingItem = item {
-            let updatedItem = Item(id: existingItem.id, name: itemName, quantity: itemQuantity, creationDate: existingItem.creationDate)
-            onSave(updatedItem)
-        } else {
-            let newItem = Item(name: itemName, quantity: itemQuantity)
-            onSave(newItem)
-        }
-        onDismiss()
     }
 }

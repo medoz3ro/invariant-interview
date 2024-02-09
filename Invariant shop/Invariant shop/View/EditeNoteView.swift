@@ -1,81 +1,59 @@
 import SwiftUI
 
-enum ActiveAlert: Identifiable {
-    case discardChanges, deleteConfirmation
-    
-    // Conform to Identifiable
-    var id: String {
-        switch self {
-        case .discardChanges:
-            return "discardChanges"
-        case .deleteConfirmation:
-            return "deleteConfirmation"
-        }
-    }
-}
-
-
 struct EditNoteView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var note: Note
     var onSave: (Note) -> Void
     var onDelete: (Note) -> Void
-    
-    
-    
-    @Binding var note: Note
+
     @State private var title: String
-    @State private var noteContent: String
+    @State private var content: String
     @State private var linkedItemIDs: [UUID]
-    @State private var activeAlert: ActiveAlert?
     @State private var isShowingItemPicker = false
-    
-    @State private var items: [Item] = []
-    private let dataManager = DataManager()
-    
+    @State private var activeAlert: ActiveAlert?
+
+    @State private var items: [Item] = [] // Assuming you have a way to load these, if needed for picker
+
+    enum ActiveAlert: Identifiable {
+        case discardChanges, deleteConfirmation
+
+        var id: Int {
+            self.hashValue
+        }
+    }
+
     init(note: Binding<Note>, onSave: @escaping (Note) -> Void, onDelete: @escaping (Note) -> Void) {
         self._note = note
         self.onSave = onSave
         self.onDelete = onDelete
         self._title = State(initialValue: note.wrappedValue.title)
-        self._noteContent = State(initialValue: note.wrappedValue.note ?? "")
+        self._content = State(initialValue: note.wrappedValue.note ?? "")
         self._linkedItemIDs = State(initialValue: note.wrappedValue.linkedItemIDs)
     }
-    
+
     private func hasChanges() -> Bool {
-        return note.title != title || note.note != noteContent || note.linkedItemIDs != linkedItemIDs
+        note.title != title || note.note != content || note.linkedItemIDs != linkedItemIDs
     }
-    
-    
+
     private func saveNote() {
-        let updatedNote = Note(id: note.id, title: title, note: noteContent, linkedItemIDs: linkedItemIDs, creationDate: note.creationDate)
+        let updatedNote = Note(id: note.id, title: title, note: content, linkedItemIDs: linkedItemIDs, creationDate: note.creationDate)
         onSave(updatedNote)
         presentationMode.wrappedValue.dismiss()
     }
-    
-    
-    private func validateInput() -> Bool {
-        if title.isEmpty {
-            print("Title cannot be empty.")
-            return false
-        }
-        return true
-    }
-    
-    
+
     var body: some View {
         NavigationView {
             Form {
                 TextField("Title", text: $title)
-                TextEditor(text: $noteContent).frame(height: 200)
-                
-                
+                TextEditor(text: $content).frame(height: 200)
+
                 Section(header: Text("Linked Items")) {
                     Button("Manage Linked Items") {
                         isShowingItemPicker = true
                     }
+                    // Optionally display linked items summary or detailed view here
                 }
-                
-                
+
                 Section {
                     Button("Delete Note", role: .destructive) {
                         activeAlert = .deleteConfirmation
@@ -90,9 +68,7 @@ struct EditNoteView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }, trailing: Button("Save") {
-                if validateInput() {
-                    saveNote()
-                }
+                saveNote()
             })
             .alert(item: $activeAlert) { alertType in
                 switch alertType {
@@ -118,10 +94,8 @@ struct EditNoteView: View {
                 }
             }
             .sheet(isPresented: $isShowingItemPicker) {
+                // Assuming ItemPickerView can accept and modify linkedItemIDs
                 ItemPickerView(linkedItemIDs: $linkedItemIDs)
-            }
-            .onAppear {
-                items = dataManager.loadItems()
             }
         }
     }

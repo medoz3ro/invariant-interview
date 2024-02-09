@@ -10,19 +10,18 @@ import SwiftUI
 struct AddNotesView: View {
     @Environment(\.presentationMode) var presentationMode
     var addNote: (Note) -> Void
-    var onNoteAdded: (() -> Void)?
-
-    
     
     @State private var noteTitle: String = ""
     @State private var noteContent: String = ""
     @State private var linkedItemIDs: [UUID] = []
     @State private var isShowingItemPicker = false
-    
-    
-    private let dataManager = DataManager()
-    @State private var items: [Item] = []
-    
+    @State private var items: [Item] = [] // Assuming you have a way to load these, if needed for the picker view
+
+    // This mirrors the approach in ItemCardAddView for disabling the "Add" button conditionally
+    var isAddButtonDisabled: Bool {
+        noteTitle.isEmpty || noteContent.isEmpty
+    }
+
     var body: some View {
         NavigationView {
             Form {
@@ -30,23 +29,21 @@ struct AddNotesView: View {
                 TextField("Note", text: $noteContent)
                 
                 Section(header: Text("Linked Items")) {
-                    Button("Add Item") {
+                    Button("Manage Linked Items") {
                         isShowingItemPicker = true
                     }
                 }
             }
             .navigationTitle("Add Note")
-            .navigationBarItems(leading: Button("Back") {
+            .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Add") {
-                let newNoteToSave = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
-                addNote(newNoteToSave)
-                dataManager.saveNote(newNoteToSave)
-                onNoteAdded?() // This should trigger the refresh in NotesListScreen
+                let newNote = Note(title: noteTitle, note: noteContent, linkedItemIDs: linkedItemIDs)
+                addNote(newNote)
                 presentationMode.wrappedValue.dismiss()
-            }.disabled(noteTitle.isEmpty))
+            }.disabled(isAddButtonDisabled))
             .sheet(isPresented: $isShowingItemPicker) {
-                ItemPickerView(linkedItemIDs: $linkedItemIDs)
+                            ItemPickerView(linkedItemIDs: $linkedItemIDs)
             }
         }
     }
@@ -59,5 +56,4 @@ struct AddNotesView_Previews: PreviewProvider {
         })
     }
 }
-
 
