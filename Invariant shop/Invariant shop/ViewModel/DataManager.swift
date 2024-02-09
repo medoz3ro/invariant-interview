@@ -1,6 +1,7 @@
 import Foundation
+import Combine
 
-class DataManager {
+class DataManager :  ObservableObject {
     private let itemsKey = "items"
     private let notesKey = "notes"
     

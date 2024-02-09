@@ -26,6 +26,7 @@
 		52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E02B73A3A1006A02EA /* NotesAddView.swift */; };
 		52B398E52B7419D2006A02EA /* EditeNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E42B7419D2006A02EA /* EditeNoteView.swift */; };
 		52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E62B7420BB006A02EA /* ItemPickerView.swift */; };
+		52E8D48C2B76D2EA009130A6 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */; };
 		52EA10E12B764B97002FD37C /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E02B764B97002FD37C /* CardModifier.swift */; };
 		52EA10E32B764FA0002FD37C /* ItemTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */; };
 		52EA10E52B7657AA002FD37C /* ImageNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */; };
@@ -52,6 +53,7 @@
 		52B398E02B73A3A1006A02EA /* NotesAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAddView.swift; sourceTree = "<group>"; };
 		52B398E42B7419D2006A02EA /* EditeNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditeNoteView.swift; sourceTree = "<group>"; };
 		52B398E62B7420BB006A02EA /* ItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerView.swift; sourceTree = "<group>"; };
+		52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsView.swift; sourceTree = "<group>"; };
 		52EA10E02B764B97002FD37C /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTextModifier.swift; sourceTree = "<group>"; };
 		52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNavigationModifier.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				52B398E02B73A3A1006A02EA /* NotesAddView.swift */,
 				52B398E42B7419D2006A02EA /* EditeNoteView.swift */,
 				52B398E62B7420BB006A02EA /* ItemPickerView.swift */,
+				52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				52B398D72B72A313006A02EA /* Item.swift in Sources */,
 				52EA10E92B76AF18002FD37C /* NumberFormatter.swift in Sources */,
+				52E8D48C2B76D2EA009130A6 /* NoteDetailsView.swift in Sources */,
 				52B398C02B714AEF006A02EA /* ShoppingListScreen.swift in Sources */,
 				52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */,
 				5288A9822B7127FF00F7D1C6 /* Invariant_shopApp.swift in Sources */,
