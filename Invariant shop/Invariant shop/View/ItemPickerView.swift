@@ -52,6 +52,7 @@ struct ItemPickerView: View {
                                 .foregroundColor(isItemSelected(item: item) ? Color("Selected") : .primary)
                         }
                     }
+                    .padding()
                 }
             }
             .navigationBarTitle("Select Items", displayMode: .inline)

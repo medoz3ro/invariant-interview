@@ -10,10 +10,10 @@ import Foundation
 struct Item: Identifiable, Codable {
     let id: UUID
     var name: String
-    var quantity: Int
+    var quantity: Double
     var creationDate: Date
     
-    init(id: UUID = UUID(), name: String, quantity: Int, creationDate: Date = Date()) {
+    init(id: UUID = UUID(), name: String, quantity: Double, creationDate: Date = Date()) {
         self.id = id
         self.name = name
         self.quantity = quantity

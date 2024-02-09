@@ -7,7 +7,7 @@ struct ItemEditView: View {
     var onDelete: (Item) -> Void
     
     @State private var itemName: String = ""
-    @State private var itemQuantity: Int = 0
+    @State private var itemQuantity: Double = 0
     @State private var activeAlert: ActiveAlert?
     
     
@@ -42,8 +42,10 @@ struct ItemEditView: View {
             VStack(spacing: 0) {
                 Form {
                     TextField("Item Name", text: $itemName)
-                    TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter())
-                        .keyboardType(.numberPad)
+                    TextField("Quantity", value: $itemQuantity, formatter: NumberFormatter.customAmountFormatter)
+                        .keyboardType(.decimalPad)
+
+
                     
                     
                     Section {

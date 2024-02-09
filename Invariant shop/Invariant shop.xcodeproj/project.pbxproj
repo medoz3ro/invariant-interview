@@ -30,6 +30,7 @@
 		52EA10E32B764FA0002FD37C /* ItemTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */; };
 		52EA10E52B7657AA002FD37C /* ImageNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */; };
 		52EA10E72B767D66002FD37C /* TitleTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E62B767D66002FD37C /* TitleTextModifier.swift */; };
+		52EA10E92B76AF18002FD37C /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E82B76AF18002FD37C /* NumberFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTextModifier.swift; sourceTree = "<group>"; };
 		52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNavigationModifier.swift; sourceTree = "<group>"; };
 		52EA10E62B767D66002FD37C /* TitleTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextModifier.swift; sourceTree = "<group>"; };
+		52EA10E82B76AF18002FD37C /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NumberFormatter.swift; path = "Invariant shop/View/ViewModifers/NumberFormatter.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		5288AA142B71297400F7D1C6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				52EA10E82B76AF18002FD37C /* NumberFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B398D72B72A313006A02EA /* Item.swift in Sources */,
+				52EA10E92B76AF18002FD37C /* NumberFormatter.swift in Sources */,
 				52B398C02B714AEF006A02EA /* ShoppingListScreen.swift in Sources */,
 				52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */,
 				5288A9822B7127FF00F7D1C6 /* Invariant_shopApp.swift in Sources */,

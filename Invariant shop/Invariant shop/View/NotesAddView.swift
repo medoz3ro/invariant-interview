@@ -15,18 +15,28 @@ struct AddNotesView: View {
     @State private var noteContent: String = ""
     @State private var linkedItemIDs: [UUID] = []
     @State private var isShowingItemPicker = false
-    @State private var items: [Item] = [] // Assuming you have a way to load these, if needed for the picker view
-
-    // This mirrors the approach in ItemCardAddView for disabling the "Add" button conditionally
+    @State private var items: [Item] = []
+    
+    
     var isAddButtonDisabled: Bool {
-        noteTitle.isEmpty || noteContent.isEmpty
+        noteTitle.isEmpty || noteContent.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
-
+    
     var body: some View {
         NavigationView {
             Form {
                 TextField("Title", text: $noteTitle)
-                TextField("Note", text: $noteContent)
+                ZStack(alignment: .topLeading) {
+                    if noteContent.isEmpty {
+                        Text("Note")
+                            .foregroundColor(.gray)
+                            .padding(.leading, 4)
+                            .padding(.top, 4)
+                    }
+                    TextEditor(text: $noteContent)
+                        .frame(minHeight: 200, maxHeight: .infinity)
+                        .padding(.top, -8)
+                }
                 
                 Section(header: Text("Linked Items")) {
                     Button("Manage Linked Items") {
@@ -43,7 +53,7 @@ struct AddNotesView: View {
                 presentationMode.wrappedValue.dismiss()
             }.disabled(isAddButtonDisabled))
             .sheet(isPresented: $isShowingItemPicker) {
-                            ItemPickerView(linkedItemIDs: $linkedItemIDs)
+                ItemPickerView(linkedItemIDs: $linkedItemIDs)
             }
         }
     }
@@ -56,4 +66,3 @@ struct AddNotesView_Previews: PreviewProvider {
         })
     }
 }
-

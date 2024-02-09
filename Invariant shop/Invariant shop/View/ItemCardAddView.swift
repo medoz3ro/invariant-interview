@@ -1,51 +1,38 @@
-//
-//  ItemCardAdd.swift
-//  Invariant shop
-//
-//  Created by Benjamin Sabo on 06.02.2024..
-//
-
 import SwiftUI
 
 struct ItemCardAddView: View {
     @Environment(\.presentationMode) var presentationMode
     var addItem: (Item) -> Void
     @State private var itemName: String = ""
-    @State private var itemQuantity: String = ""
-    
+    @State private var itemQuantityString: String = ""
+
+    // Dynamically calculate `isAddButtonDisabled` based on itemName and itemQuantityString
     var isAddButtonDisabled: Bool {
-        itemName.isEmpty || itemQuantity.isEmpty || Int(itemQuantity) == nil
+        itemName.isEmpty || Double(itemQuantityString) == nil
     }
-    
+
     private func addNewItem() {
-        if let quantity = Int(itemQuantity), !itemName.isEmpty {
+        // Directly check and use `itemQuantityString` to create a new item
+        if let quantity = Double(itemQuantityString), !itemName.isEmpty {
             let newItem = Item(name: itemName, quantity: quantity)
             addItem(newItem)
             presentationMode.wrappedValue.dismiss()
         }
     }
-    
+
     var body: some View {
-        SwiftUI.NavigationView {
+        NavigationView {
             Form {
                 TextField("Item Name", text: $itemName)
-                TextField("Quantity", text: $itemQuantity)
-                    .keyboardType(.numberPad)
+                TextField("Quantity", text: $itemQuantityString)
+                    .keyboardType(.decimalPad)
             }
             .navigationTitle("Add Item")
             .navigationBarItems(leading: Button("Back") {
-                if itemName.isEmpty && itemQuantity.isEmpty {
-                    presentationMode.wrappedValue.dismiss()
-                } else {
-                    presentationMode.wrappedValue.dismiss()
-                }
+                presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Add") {
                 addNewItem()
             }.disabled(isAddButtonDisabled))
         }
     }
 }
-
-
-
-

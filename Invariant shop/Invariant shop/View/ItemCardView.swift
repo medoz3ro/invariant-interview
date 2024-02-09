@@ -16,6 +16,10 @@ struct ItemCardView: View {
         formatter.timeStyle = .short
         return formatter
     }
+    
+    private var quantityFormatted: String {
+           NumberFormatter.customAmountFormatter.string(from: NSNumber(value: item.quantity)) ?? "\(item.quantity)"
+       }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -24,7 +28,8 @@ struct ItemCardView: View {
             
             HStack {
                 Text("Quantity:")
-                Text("\(item.quantity)")
+                Text(quantityFormatted)
+
             }
             .textStyle(font: .subheadline)
             
