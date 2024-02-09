@@ -3,4 +3,102 @@
    uuid = "5D953AE8-D927-4B18-BFB6-02A7EED57BCF"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7BC2C2E-8DD9-401B-95E6-DABCD87EC0D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Invariant shop/Controlers/ShoppingListScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "sortItems()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F7BC2C2E-8DD9-401B-95E6-DABCD87EC0D8 - a440fa948bd3086c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Invariant_shop.Item, Invariant_shop.Item) -&gt; Swift.Bool in Invariant_shop.ShoppingListScreen.sortItems() -&gt; ()"
+                  moduleName = "Invariant shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminsabo/Desktop/Interview/invariant-interview/Invariant%20shop/Invariant%20shop/Controlers/ShoppingListScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "712">
+               </Location>
+               <Location
+                  uuid = "F7BC2C2E-8DD9-401B-95E6-DABCD87EC0D8 - a440fa948bd3086c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Invariant_shop.Item, Invariant_shop.Item) -&gt; Swift.Bool in Invariant_shop.ShoppingListScreen.sortItems() -&gt; ()"
+                  moduleName = "Invariant shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminsabo/Desktop/Interview/invariant-interview/Invariant%20shop/Invariant%20shop/Controlers/ShoppingListScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "856">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA81EF07-20E9-48E6-B491-3E72EEF00D72"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Invariant shop/Controlers/ShoppingListScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "sortItems()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CA81EF07-20E9-48E6-B491-3E72EEF00D72 - e2e7f08ab52ba39a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Invariant_shop.Item, Invariant_shop.Item) -&gt; Swift.Bool in Invariant_shop.ShoppingListScreen.sortItems() -&gt; ()"
+                  moduleName = "Invariant shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminsabo/Desktop/Interview/invariant-interview/Invariant%20shop/Invariant%20shop/Controlers/ShoppingListScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "784">
+               </Location>
+               <Location
+                  uuid = "CA81EF07-20E9-48E6-B491-3E72EEF00D72 - e2e7f08ab52ba39a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Invariant_shop.Item, Invariant_shop.Item) -&gt; Swift.Bool in Invariant_shop.ShoppingListScreen.sortItems() -&gt; ()"
+                  moduleName = "Invariant shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benjaminsabo/Desktop/Interview/invariant-interview/Invariant%20shop/Invariant%20shop/Controlers/ShoppingListScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "924">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

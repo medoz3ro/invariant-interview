@@ -5,6 +5,7 @@ struct NotesListScreen: View {
     private let dataManager = DataManager()
     @State private var notes: [Note] = []
     @State private var selectedNote: Note?
+    @State private var isSortedAscending = false
     
     public init(rootViewManager: RootViewManager) {
         self.rootViewManager = rootViewManager
@@ -12,24 +13,28 @@ struct NotesListScreen: View {
     
     private func loadNotes() {
         self.notes = self.dataManager.loadNotes()
+        sortNotes()
     }
     
     func sortNotes() {
+        isSortedAscending.toggle() // Toggle the sort order
         notes.sort {
-            if $0.title != $1.title {
-                return $0.title < $1.title
+            let titleComparison = $0.title.lowercased().compare($1.title.lowercased())
+            if titleComparison != .orderedSame {
+                return isSortedAscending ? titleComparison == .orderedAscending : titleComparison == .orderedDescending
             } else if $0.linkedItemIDs.count != $1.linkedItemIDs.count {
-                return $0.linkedItemIDs.count < $1.linkedItemIDs.count
+                return isSortedAscending ? $0.linkedItemIDs.count < $1.linkedItemIDs.count : $0.linkedItemIDs.count > $1.linkedItemIDs.count
             } else {
-                return $0.id.uuidString > $1.id.uuidString
+                return isSortedAscending ? $0.id.uuidString > $1.id.uuidString : $0.id.uuidString < $1.id.uuidString
             }
         }
     }
+
     
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                VStack(spacing: 15) {
+                VStack(spacing: 10) {
                     TitleView(title: "Notes")
                         .frame(maxWidth: .infinity, alignment: .top)
 
