@@ -18,7 +18,7 @@ struct ItemCardView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(item.name)
                 .font(.headline)
             
@@ -33,6 +33,7 @@ struct ItemCardView: View {
                 .foregroundColor(.gray)
         }
         .padding()
+        .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 2)

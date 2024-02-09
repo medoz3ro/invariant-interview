@@ -23,6 +23,7 @@ struct ItemCardNotesView: View {
                 .foregroundColor(.gray)
         }
         .padding()
+        .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 2)
