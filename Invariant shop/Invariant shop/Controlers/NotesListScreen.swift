@@ -34,23 +34,30 @@ struct NotesListScreen: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            ScrollView {
                 VStack(spacing: 10) {
-                    TitleView(title: "Notes")
-                        .frame(maxWidth: .infinity, alignment: .top)
+                    VStack(spacing: 0) {
+                        Color("Title")
+                            .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
+                            .edgesIgnoringSafeArea(.top)
+                        
+                        TitleView(title: "Notes")
+    
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 115, alignment: .top)
                     
                     
+                    ScrollView {
                     ForEach(notes) { note in
                         ItemCardNotesView(note: note)
-                            .padding(.horizontal)
                             .onTapGesture {
                                 self.selectedNote = note
                             }
                     }
+                    Spacer().frame(height: 70)
                 }
-                .padding(.bottom, 70)
             }
-            .background(Color("Title").edgesIgnoringSafeArea(.top).opacity(0))
+         
+            
             NavigationNotesView(rootViewManager: rootViewManager, onSort: sortNotes)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
@@ -69,6 +76,7 @@ struct NotesListScreen: View {
                 self.selectedNote = nil
             })
         }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

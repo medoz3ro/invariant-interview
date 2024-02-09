@@ -30,6 +30,10 @@ struct ItemPickerView: View {
         }
     }
     
+    private func isItemSelected(item: Item) -> Bool {
+        return localLinkedItemIDs.contains(item.id)
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -45,6 +49,7 @@ struct ItemPickerView: View {
                                 .onTapGesture {
                                     self.toggleItemSelection(item: item)
                                 }
+                                .foregroundColor(isItemSelected(item: item) ? Color("Selected") : .primary)
                         }
                     }
                 }

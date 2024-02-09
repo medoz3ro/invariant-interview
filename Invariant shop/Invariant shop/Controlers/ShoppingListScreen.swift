@@ -11,7 +11,7 @@ struct ShoppingListScreen: View {
     @ObservedObject var rootViewManager: RootViewManager
     @State private var items: [Item] = []
     @State private var selectedItem: Item?
-    @State private var currentSort: SortType = .nameAscendingIdDescending 
+    @State private var currentSort: SortType = .nameAscendingIdDescending
     private let dataManager = DataManager()
     
     
@@ -91,12 +91,19 @@ struct ShoppingListScreen: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            ScrollView {
                 VStack(spacing: 10) {
-                    TitleView(title: "Shopping List")
-                        .frame(maxWidth: .infinity, alignment: .top)
+                    VStack(spacing: 0) {
+                        Color("Title")
+                            .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
+                            .edgesIgnoringSafeArea(.top)
+                        
+                        TitleView(title: "Shopping List")
+    
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 115, alignment: .top)
                     
                     
+                    ScrollView {
                     ForEach(items) { item in
                         ItemCardView(item: item)
                             .onTapGesture {
@@ -127,6 +134,8 @@ struct ShoppingListScreen: View {
                 deleteItem(itemToDelete: itemToDelete)
             })
         }
+        .edgesIgnoringSafeArea(.top)
+        
     }
 }
 
