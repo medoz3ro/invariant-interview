@@ -12,10 +12,13 @@ struct NotesListScreen: View {
     }
     
     private func loadNotes() {
-        self.notes = self.dataManager.loadNotes()
-        sortNotes()
+        notes = dataManager.loadNotes()
+
     }
     
+    private func addNote(_ note: Note) {
+        notes.append(note)
+    }
     
     func sortNotes() {
         isSortedAscending.toggle()
@@ -53,16 +56,19 @@ struct NotesListScreen: View {
                                 self.selectedNote = note
                             }
                     }
-                    Spacer().frame(height: 70)
+                    .padding()
                 }
             }
          
             
-            NavigationNotesView(rootViewManager: rootViewManager, onSort: sortNotes)
+            NavigationNotesView(rootViewManager: rootViewManager, onSort: sortNotes, addNote: addNote)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
         }
-        .onAppear(perform: loadNotes)
+        .onAppear(perform: {
+            loadNotes()
+            isSortedAscending = false
+        })
         .sheet(item: $selectedNote) { selectedNote in
             EditNoteView(note: Binding.constant(selectedNote), onSave: { updatedNote in
                 if let index = self.notes.firstIndex(where: { $0.id == updatedNote.id }) {
@@ -87,12 +93,4 @@ struct NotesListScreen_Previews: PreviewProvider {
 }
 
 
-
-
-struct NotesHomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        let previewRootViewManager = RootViewManager()
-        NotesListScreen(rootViewManager: previewRootViewManager)
-    }
-}
 

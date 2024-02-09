@@ -18,13 +18,11 @@ struct TitleView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                 Text("Shopi")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("Text"))
+                    .TitleModifier()
                 Spacer()
                 Text(title)
                     .padding()
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("Text"))
+                    .TitleModifier()
             }
             .background(Color("Title") .edgesIgnoringSafeArea(.all))
         }

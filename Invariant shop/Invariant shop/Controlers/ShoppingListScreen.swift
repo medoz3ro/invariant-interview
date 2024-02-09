@@ -50,11 +50,13 @@ struct ShoppingListScreen: View {
     private func saveItem(_ updatedItem: Item) {
         if let index = items.firstIndex(where: { $0.id == updatedItem.id }) {
             items[index] = updatedItem
+            sortItems()
+            dataManager.saveItems(items)
         } else {
             print("Item not found for update; this should not happen.")
         }
     }
-    
+
     
     private func toggleSort() {
         switch currentSort {
@@ -110,7 +112,8 @@ struct ShoppingListScreen: View {
                                 self.selectedItem = item
                             }
                     }
-                    Spacer().frame(height: 70)
+                    .padding()
+                    
                 }
             }
             

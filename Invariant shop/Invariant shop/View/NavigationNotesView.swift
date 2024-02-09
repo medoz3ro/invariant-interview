@@ -12,6 +12,7 @@ struct NavigationNotesView: View {
     var rootViewManager: RootViewManager
     
     var onSort: () -> Void
+    var addNote: (Note) -> Void
     
     var body: some View {
         VStack {
@@ -35,9 +36,7 @@ struct NavigationNotesView: View {
                    
                 }
                 .sheet(isPresented: $showingAddNotesView) {
-                    AddNotesView(addNote: { _ in
-                        print("Note added")
-                    })
+                    AddNotesView(addNote: addNote)
                 }
                 
                 Spacer()
@@ -59,7 +58,7 @@ struct NavigationNotesView: View {
 
 struct NavigationNotesView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationNotesView(rootViewManager: RootViewManager(), onSort: {})
+        NavigationNotesView(rootViewManager: RootViewManager(), onSort: {}, addNote: {_ in })
 
     }
 }

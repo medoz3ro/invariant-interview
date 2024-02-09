@@ -4,6 +4,8 @@ class DataManager {
     private let itemsKey = "items"
     private let notesKey = "notes"
     
+    
+    
     func saveItems(_ items: [Item]) {
         let encoder = JSONEncoder()
         do {

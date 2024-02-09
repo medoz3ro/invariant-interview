@@ -81,6 +81,7 @@ struct ItemEditView: View {
         }
     }
     
+    
     private func hasChanges() -> Bool {
         guard let initialItem = item else {
             return !(itemName.isEmpty && itemQuantity == 0)

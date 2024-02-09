@@ -29,6 +29,7 @@
 		52EA10E12B764B97002FD37C /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E02B764B97002FD37C /* CardModifier.swift */; };
 		52EA10E32B764FA0002FD37C /* ItemTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */; };
 		52EA10E52B7657AA002FD37C /* ImageNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */; };
+		52EA10E72B767D66002FD37C /* TitleTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E62B767D66002FD37C /* TitleTextModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		52EA10E02B764B97002FD37C /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTextModifier.swift; sourceTree = "<group>"; };
 		52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNavigationModifier.swift; sourceTree = "<group>"; };
+		52EA10E62B767D66002FD37C /* TitleTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				52EA10E02B764B97002FD37C /* CardModifier.swift */,
 				52EA10E22B764FA0002FD37C /* ItemTextModifier.swift */,
 				52EA10E42B7657AA002FD37C /* ImageNavigationModifier.swift */,
+				52EA10E62B767D66002FD37C /* TitleTextModifier.swift */,
 			);
 			path = ViewModifers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				52B398E52B7419D2006A02EA /* EditeNoteView.swift in Sources */,
 				52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */,
 				52EA10E52B7657AA002FD37C /* ImageNavigationModifier.swift in Sources */,
+				52EA10E72B767D66002FD37C /* TitleTextModifier.swift in Sources */,
 				52EA10E32B764FA0002FD37C /* ItemTextModifier.swift in Sources */,
 				52B398D22B725321006A02EA /* ItemCardAddView.swift in Sources */,
 				52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */,
