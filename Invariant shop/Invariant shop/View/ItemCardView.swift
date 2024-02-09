@@ -20,16 +20,13 @@ struct ItemCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(item.name)
-                .font(.headline)
-                .lineLimit(1)
-                .truncationMode(.tail)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .textStyle()
             
             HStack {
                 Text("Quantity:")
                 Text("\(item.quantity)")
             }
-            .font(.subheadline)
+            .textStyle(font: .subheadline)
             
             HStack {
                 Spacer()
@@ -38,12 +35,7 @@ struct ItemCardView: View {
                     .foregroundColor(.gray)
             }
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 2)
-        .padding(.horizontal)
+        .cardStyle()
     }
 }
 
@@ -55,7 +47,6 @@ struct ItemCardView_Previews: PreviewProvider {
         let sampleItem = Item(name: "Bread", quantity: 2, creationDate: Date())
         // Pass the sample item to the ItemCardView
         ItemCardView(item: sampleItem)
-            .previewLayout(.sizeThatFits)
     }
 }
 

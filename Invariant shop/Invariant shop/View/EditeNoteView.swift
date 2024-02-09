@@ -13,14 +13,14 @@ enum ActiveAlert: Identifiable {
         }
     }
 }
-    
+
 
 struct EditNoteView: View {
     @Environment(\.presentationMode) var presentationMode
     var onSave: (Note) -> Void
     var onDelete: (Note) -> Void
     
-
+    
     
     @Binding var note: Note
     @State private var title: String
@@ -41,17 +41,40 @@ struct EditNoteView: View {
         self._linkedItemIDs = State(initialValue: note.wrappedValue.linkedItemIDs)
     }
     
+    private func hasChanges() -> Bool {
+        return note.title != title || note.note != noteContent || note.linkedItemIDs != linkedItemIDs
+    }
+    
+    
+    private func saveNote() {
+        let updatedNote = Note(id: note.id, title: title, note: noteContent, linkedItemIDs: linkedItemIDs, creationDate: note.creationDate)
+        onSave(updatedNote)
+        presentationMode.wrappedValue.dismiss()
+    }
+    
+    
+    private func validateInput() -> Bool {
+        if title.isEmpty {
+            print("Title cannot be empty.")
+            return false
+        }
+        return true
+    }
+    
+    
     var body: some View {
         NavigationView {
             Form {
                 TextField("Title", text: $title)
                 TextEditor(text: $noteContent).frame(height: 200)
                 
+                
                 Section(header: Text("Linked Items")) {
                     Button("Manage Linked Items") {
                         isShowingItemPicker = true
                     }
                 }
+                
                 
                 Section {
                     Button("Delete Note", role: .destructive) {
@@ -94,7 +117,6 @@ struct EditNoteView: View {
                     )
                 }
             }
-
             .sheet(isPresented: $isShowingItemPicker) {
                 ItemPickerView(linkedItemIDs: $linkedItemIDs)
             }
@@ -102,24 +124,6 @@ struct EditNoteView: View {
                 items = dataManager.loadItems()
             }
         }
-    }
-    
-    private func hasChanges() -> Bool {
-        return note.title != title || note.note != noteContent || note.linkedItemIDs != linkedItemIDs
-    }
-    
-    private func saveNote() {
-        let updatedNote = Note(id: note.id, title: title, note: noteContent, linkedItemIDs: linkedItemIDs, creationDate: note.creationDate)
-        onSave(updatedNote)
-        presentationMode.wrappedValue.dismiss()
-    }
-    
-    private func validateInput() -> Bool {
-        if title.isEmpty {
-            print("Title cannot be empty.")
-            return false
-        }
-        return true
     }
 }
 

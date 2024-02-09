@@ -10,7 +10,7 @@ import SwiftUI
 
 class RootViewManager: ObservableObject {
     @Published var currentView: ViewType = .shoppingList
-
+    
     enum ViewType {
         case shoppingList
         case notesList
@@ -21,7 +21,7 @@ class RootViewManager: ObservableObject {
 @main
 struct Invariant_shopApp: App {
     @StateObject private var rootViewManager = RootViewManager()
-
+    
     var body: some Scene {
         WindowGroup {
             switch rootViewManager.currentView {

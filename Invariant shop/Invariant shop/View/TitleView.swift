@@ -5,14 +5,12 @@
 //  Created by Benjamin Sabo on 05.02.2024..
 //
 
-
-
 import SwiftUI
 
 
 struct TitleView: View {
     var title: String
-
+    
     var body: some View {
         HStack(spacing: 5) {
             Image("shopi")

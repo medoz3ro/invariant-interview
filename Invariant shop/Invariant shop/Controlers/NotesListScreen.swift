@@ -16,8 +16,9 @@ struct NotesListScreen: View {
         sortNotes()
     }
     
+    
     func sortNotes() {
-        isSortedAscending.toggle() // Toggle the sort order
+        isSortedAscending.toggle()
         notes.sort {
             let titleComparison = $0.title.lowercased().compare($1.title.lowercased())
             if titleComparison != .orderedSame {
@@ -29,7 +30,7 @@ struct NotesListScreen: View {
             }
         }
     }
-
+    
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -37,11 +38,14 @@ struct NotesListScreen: View {
                 VStack(spacing: 10) {
                     TitleView(title: "Notes")
                         .frame(maxWidth: .infinity, alignment: .top)
-
+                    
                     
                     ForEach(notes) { note in
                         ItemCardNotesView(note: note)
                             .padding(.horizontal)
+                            .onTapGesture {
+                                self.selectedNote = note
+                            }
                     }
                 }
                 .padding(.bottom, 70)

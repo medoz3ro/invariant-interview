@@ -3,7 +3,7 @@ import Foundation
 class DataManager {
     private let itemsKey = "items"
     private let notesKey = "notes"
-
+    
     func saveItems(_ items: [Item]) {
         let encoder = JSONEncoder()
         do {
@@ -13,13 +13,13 @@ class DataManager {
             print("Failed to encode items: \(error)")
         }
     }
-
+    
     func loadItems() -> [Item] {
         guard let itemsData = UserDefaults.standard.data(forKey: itemsKey) else {
             print("No items found")
             return []
         }
-
+        
         let decoder = JSONDecoder()
         do {
             let items = try decoder.decode([Item].self, from: itemsData)
@@ -33,11 +33,11 @@ class DataManager {
     func saveNote(_ note: Note) {
         var notes = loadNotes()
         if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes[index] = note // Update existing note
+            notes[index] = note
         } else {
-            notes.append(note) // Add new note
+            notes.append(note)
         }
-        saveNotes(notes) // Use saveNotes to save the updated array
+        saveNotes(notes)
     }
     
     func saveNotes(_ notes: [Note]) {
@@ -49,24 +49,23 @@ class DataManager {
             print("Failed to encode notes: \(error)")
         }
     }
-
+    
     func loadNotes() -> [Note] {
         guard let notesData = UserDefaults.standard.data(forKey: notesKey) else {
             print("No notes found")
             return []
         }
-
+        
         let decoder = JSONDecoder()
         do {
             var notes = try decoder.decode([Note].self, from: notesData)
-            // Sort the notes array based on the criteria
             notes.sort {
                 if $0.title != $1.title {
-                    return $0.title < $1.title // Ascending by title
+                    return $0.title < $1.title
                 } else if $0.linkedItemIDs.count != $1.linkedItemIDs.count {
-                    return $0.linkedItemIDs.count < $1.linkedItemIDs.count // Ascending by number of linked items
+                    return $0.linkedItemIDs.count < $1.linkedItemIDs.count
                 } else {
-                    return $0.id.uuidString > $1.id.uuidString // Descending by ID
+                    return $0.id.uuidString > $1.id.uuidString
                 }
             }
             return notes
@@ -75,11 +74,11 @@ class DataManager {
             return []
         }
     }
-
+    
     
     func deleteNote(_ note: Note) {
         var notes = loadNotes()
         notes.removeAll { $0.id == note.id }
-        saveNotes(notes) // Correctly call saveNotes to update the list after deletion
+        saveNotes(notes)
     }
 }

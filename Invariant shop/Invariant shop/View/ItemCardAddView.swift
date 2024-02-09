@@ -12,11 +12,19 @@ struct ItemCardAddView: View {
     var addItem: (Item) -> Void
     @State private var itemName: String = ""
     @State private var itemQuantity: String = ""
-
+    
     var isAddButtonDisabled: Bool {
         itemName.isEmpty || itemQuantity.isEmpty || Int(itemQuantity) == nil
     }
-
+    
+    private func addNewItem() {
+        if let quantity = Int(itemQuantity), !itemName.isEmpty {
+            let newItem = Item(name: itemName, quantity: quantity)
+            addItem(newItem)
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+    
     var body: some View {
         SwiftUI.NavigationView {
             Form {
@@ -29,20 +37,11 @@ struct ItemCardAddView: View {
                 if itemName.isEmpty && itemQuantity.isEmpty {
                     presentationMode.wrappedValue.dismiss()
                 } else {
-                    // Implement your logic for discard confirmation if needed
                     presentationMode.wrappedValue.dismiss()
                 }
             }, trailing: Button("Add") {
                 addNewItem()
             }.disabled(isAddButtonDisabled))
-        }
-    }
-
-    private func addNewItem() {
-        if let quantity = Int(itemQuantity), !itemName.isEmpty {
-            let newItem = Item(name: itemName, quantity: quantity)
-            addItem(newItem)
-            presentationMode.wrappedValue.dismiss()
         }
     }
 }

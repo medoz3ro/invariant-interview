@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ItemEditView: View {
-    @Binding var item: Item? // Optional item
+    @Binding var item: Item?
     var onDismiss: () -> Void
     var onSave: (Item) -> Void
     var onDelete: (Item) -> Void
@@ -10,7 +10,7 @@ struct ItemEditView: View {
     @State private var itemQuantity: Int = 0
     @State private var activeAlert: ActiveAlert?
     
-    // Using the same ActiveAlert enum structure from EditNoteView for consistency
+    
     enum ActiveAlert: Identifiable {
         case discardChanges, confirmDelete
         

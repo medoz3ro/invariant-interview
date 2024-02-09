@@ -10,20 +10,23 @@ import SwiftUI
 struct ItemCardNotesView: View {
     var note: Note
     
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(note.title)
-                .font(.headline)
-                .lineLimit(1) // Ensure title is limited to a single line
-                .truncationMode(.tail) // Truncate at the end if needed
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .textStyle()
             
             HStack {
                 Text("Note:")
-                // Display "Empty" if note.note is nil or empty, otherwise display note.note
                 Text(note.note?.isEmpty ?? true ? "Empty" : note.note!)
             }
-            .font(.subheadline)
+            .textStyle(font: .subheadline)
             
             
             Spacer()
@@ -35,18 +38,7 @@ struct ItemCardNotesView: View {
                     .foregroundColor(.gray)
             }
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 2)
-    }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
+        .cardStyle()
     }
 }
 
