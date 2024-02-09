@@ -11,7 +11,7 @@ struct CardModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
-            .background(Color.white)
+            .background(Color("Text"))
             .cornerRadius(10)
             .shadow(radius: 2)
             .frame(maxWidth: .infinity)

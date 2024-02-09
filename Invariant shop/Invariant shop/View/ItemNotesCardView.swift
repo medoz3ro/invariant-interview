@@ -42,7 +42,7 @@ struct ItemCardNotesView: View {
                 .foregroundColor(.gray)
         }
         .padding()
-        .background(Color.white) // Use a white background for the card.
+        .background(Color("Text")) // Use a white background for the card.
         .cornerRadius(10) // Rounded corners for the card.
         .shadow(radius: 5) // Apply a shadow for depth.
     }
