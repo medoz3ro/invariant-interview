@@ -21,6 +21,9 @@ struct ItemCardView: View {
         VStack(alignment: .leading, spacing: 5) {
             Text(item.name)
                 .font(.headline)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
                 Text("Quantity:")
