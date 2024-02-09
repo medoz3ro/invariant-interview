@@ -22,28 +22,22 @@ struct ItemPickerView: View {
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                List {
-                    ForEach(filteredItems, id: \.id) { item in
-                        HStack {
-                            Text(item.name)
-                            Spacer()
-                            if localLinkedItemIDs.contains(item.id) {
-                                Image(systemName: "checkmark")
-                            }
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            self.toggleItemSelection(item: item)
+                ScrollView {
+                    VStack(spacing: 15) {
+                        ForEach(filteredItems, id: \.id) { item in
+                            ItemCardView(item: item)
+                                .padding(.horizontal)
+                                .onTapGesture {
+                                    self.toggleItemSelection(item: item)
+                                }
                         }
                     }
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationBarTitle("Select Items", displayMode: .inline)
             .navigationBarItems(leading: Button("Back") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                // Save the selections by updating the original binding
                 self.linkedItemIDs = self.localLinkedItemIDs
                 presentationMode.wrappedValue.dismiss()
             })
@@ -67,5 +61,24 @@ struct ItemPickerView: View {
         } else {
             localLinkedItemIDs.append(item.id)
         }
+    }
+}
+
+
+
+struct ItemPickerCardView: View {
+    var item: Item
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(item.name)
+                .font(.headline)
+            // Optionally, include more details about the item here
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 2)
+        .frame(maxWidth: .infinity)
     }
 }
