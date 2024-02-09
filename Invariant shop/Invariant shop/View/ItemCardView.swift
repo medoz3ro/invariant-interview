@@ -31,9 +31,12 @@ struct ItemCardView: View {
             }
             .font(.subheadline)
             
-            Text("Created: \(dateFormatter.string(from: item.creationDate))")
-                .font(.caption)
-                .foregroundColor(.gray)
+            HStack {
+                Spacer()
+                Text("Created: \(dateFormatter.string(from: item.creationDate))")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
         }
         .padding()
         .frame(maxWidth: .infinity)
