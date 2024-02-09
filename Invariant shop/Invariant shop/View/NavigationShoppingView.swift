@@ -38,7 +38,7 @@ struct NavigationShoppingView: View {
                 Button(action: {
                     rootViewManager.currentView = .notesList 
                 }) {
-                    Image("notes")
+                    Image(systemName: "list.clipboard")
                         .navigationImageStyle()
                 }
                 Spacer()
