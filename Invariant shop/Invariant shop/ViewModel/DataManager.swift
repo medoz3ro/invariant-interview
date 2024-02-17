@@ -5,6 +5,7 @@ class DataManager :  ObservableObject {
     private let itemsKey = "items"
     private let notesKey = "notes"
     
+    static let shared = DataManager()
     
     
     func saveItems(_ items: [Item]) {
@@ -83,5 +84,33 @@ class DataManager :  ObservableObject {
         var notes = loadNotes()
         notes.removeAll { $0.id == note.id }
         saveNotes(notes)
+    }
+    
+    
+    func processInputText(_ input: String) {
+        
+        if input.lowercased().contains("kupiti u") {
+           
+            
+            let noteParts = input.components(separatedBy: ":")
+            let title = noteParts.first ?? "Shopping Note"
+            let detail = noteParts.count > 1 ? noteParts[1] : ""
+            let note = Note(title: title, note: detail)
+            saveNote(note)
+        } else {
+            // Assume the input is an item list
+            let itemsDescriptions = input.split(separator: ",")
+            var items = [Item]()
+            for itemDescription in itemsDescriptions {
+                let parts = itemDescription.split(separator: " ")
+                if parts.count >= 2, let quantity = Double(parts[0]) {
+                    let name = parts[1...].joined(separator: " ")
+                    let item = Item(name: name, quantity: quantity)
+                    items.append(item)
+                }
+            }
+            saveItems(items)
+            
+        }
     }
 }

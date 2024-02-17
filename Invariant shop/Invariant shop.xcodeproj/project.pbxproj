@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5217FE522B81559300144D12 /* ChatControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5217FE512B81559300144D12 /* ChatControler.swift */; };
+		5217FE552B8158C900144D12 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5217FE542B8158C900144D12 /* OpenAISwift */; };
+		5217FE572B815AF900144D12 /* AiChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5217FE562B815AF900144D12 /* AiChatView.swift */; };
 		5288A9822B7127FF00F7D1C6 /* Invariant_shopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288A9812B7127FF00F7D1C6 /* Invariant_shopApp.swift */; };
 		5288A9862B71280100F7D1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5288A9852B71280100F7D1C6 /* Assets.xcassets */; };
 		5288A9892B71280100F7D1C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5288A9882B71280100F7D1C6 /* Preview Assets.xcassets */; };
@@ -16,15 +19,15 @@
 		52B398C62B715E8D006A02EA /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398C52B715E8D006A02EA /* TitleView.swift */; };
 		52B398C82B71618B006A02EA /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398C72B71618B006A02EA /* ItemCardView.swift */; };
 		52B398CA2B71680F006A02EA /* NavigationShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398C92B71680F006A02EA /* NavigationShoppingView.swift */; };
-		52B398D02B71908B006A02EA /* ItemCardEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398CF2B71908B006A02EA /* ItemCardEdit.swift */; };
+		52B398D02B71908B006A02EA /* ItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398CF2B71908B006A02EA /* ItemEditView.swift */; };
 		52B398D22B725321006A02EA /* ItemCardAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398D12B725321006A02EA /* ItemCardAddView.swift */; };
 		52B398D72B72A313006A02EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398D62B72A313006A02EA /* Item.swift */; };
 		52B398D92B72B550006A02EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398D82B72B550006A02EA /* DataManager.swift */; };
 		52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */; };
 		52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DC2B72E356006A02EA /* NavigationNotesView.swift */; };
-		52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */; };
-		52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E02B73A3A1006A02EA /* NotesAddView.swift */; };
-		52B398E52B7419D2006A02EA /* EditeNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E42B7419D2006A02EA /* EditeNoteView.swift */; };
+		52B398DF2B72F249006A02EA /* ItemCardNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398DE2B72F249006A02EA /* ItemCardNotesView.swift */; };
+		52B398E12B73A3A1006A02EA /* AddNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E02B73A3A1006A02EA /* AddNotesView.swift */; };
+		52B398E52B7419D2006A02EA /* EditNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E42B7419D2006A02EA /* EditNoteView.swift */; };
 		52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B398E62B7420BB006A02EA /* ItemPickerView.swift */; };
 		52E8D48C2B76D2EA009130A6 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */; };
 		52EA10E12B764B97002FD37C /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA10E02B764B97002FD37C /* CardModifier.swift */; };
@@ -35,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5217FE512B81559300144D12 /* ChatControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControler.swift; sourceTree = "<group>"; };
+		5217FE562B815AF900144D12 /* AiChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiChatView.swift; sourceTree = "<group>"; };
 		5288A97E2B7127FF00F7D1C6 /* Invariant shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Invariant shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5288A9812B7127FF00F7D1C6 /* Invariant_shopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invariant_shopApp.swift; sourceTree = "<group>"; };
 		5288A9852B71280100F7D1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,15 +48,15 @@
 		52B398C52B715E8D006A02EA /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		52B398C72B71618B006A02EA /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
 		52B398C92B71680F006A02EA /* NavigationShoppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationShoppingView.swift; sourceTree = "<group>"; };
-		52B398CF2B71908B006A02EA /* ItemCardEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardEdit.swift; sourceTree = "<group>"; };
+		52B398CF2B71908B006A02EA /* ItemEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditView.swift; sourceTree = "<group>"; };
 		52B398D12B725321006A02EA /* ItemCardAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardAddView.swift; sourceTree = "<group>"; };
 		52B398D62B72A313006A02EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		52B398D82B72B550006A02EA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListScreen.swift; sourceTree = "<group>"; };
 		52B398DC2B72E356006A02EA /* NavigationNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNotesView.swift; sourceTree = "<group>"; };
-		52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNotesCardView.swift; sourceTree = "<group>"; };
-		52B398E02B73A3A1006A02EA /* NotesAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAddView.swift; sourceTree = "<group>"; };
-		52B398E42B7419D2006A02EA /* EditeNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditeNoteView.swift; sourceTree = "<group>"; };
+		52B398DE2B72F249006A02EA /* ItemCardNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardNotesView.swift; sourceTree = "<group>"; };
+		52B398E02B73A3A1006A02EA /* AddNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesView.swift; sourceTree = "<group>"; };
+		52B398E42B7419D2006A02EA /* EditNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteView.swift; sourceTree = "<group>"; };
 		52B398E62B7420BB006A02EA /* ItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerView.swift; sourceTree = "<group>"; };
 		52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsView.swift; sourceTree = "<group>"; };
 		52EA10E02B764B97002FD37C /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B398BD2B714A26006A02EA /* SwiftyJSON in Frameworks */,
+				5217FE552B8158C900144D12 /* OpenAISwift in Frameworks */,
 				52B398BA2B714905006A02EA /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,14 +126,15 @@
 				52B398C72B71618B006A02EA /* ItemCardView.swift */,
 				52B398C52B715E8D006A02EA /* TitleView.swift */,
 				52B398C92B71680F006A02EA /* NavigationShoppingView.swift */,
-				52B398CF2B71908B006A02EA /* ItemCardEdit.swift */,
+				52B398CF2B71908B006A02EA /* ItemEditView.swift */,
 				52B398D12B725321006A02EA /* ItemCardAddView.swift */,
 				52B398DC2B72E356006A02EA /* NavigationNotesView.swift */,
-				52B398DE2B72F249006A02EA /* ItemNotesCardView.swift */,
-				52B398E02B73A3A1006A02EA /* NotesAddView.swift */,
-				52B398E42B7419D2006A02EA /* EditeNoteView.swift */,
+				52B398DE2B72F249006A02EA /* ItemCardNotesView.swift */,
+				52B398E02B73A3A1006A02EA /* AddNotesView.swift */,
+				52B398E42B7419D2006A02EA /* EditNoteView.swift */,
 				52B398E62B7420BB006A02EA /* ItemPickerView.swift */,
 				52E8D48B2B76D2EA009130A6 /* NoteDetailsView.swift */,
+				5217FE562B815AF900144D12 /* AiChatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			children = (
 				52B398BF2B714AEE006A02EA /* ShoppingListScreen.swift */,
 				52B398DA2B72E2DF006A02EA /* NotesListScreen.swift */,
+				5217FE512B81559300144D12 /* ChatControler.swift */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			packageProductDependencies = (
 				52B398B92B714905006A02EA /* Alamofire */,
 				52B398BC2B714A26006A02EA /* SwiftyJSON */,
+				5217FE542B8158C900144D12 /* OpenAISwift */,
 			);
 			productName = "Invariant shop";
 			productReference = 5288A97E2B7127FF00F7D1C6 /* Invariant shop.app */;
@@ -227,6 +236,7 @@
 			packageReferences = (
 				52B398B82B714904006A02EA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				52B398BB2B714A26006A02EA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				5217FE532B8158C900144D12 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 			);
 			productRefGroup = 5288A97F2B7127FF00F7D1C6 /* Products */;
 			projectDirPath = "";
@@ -258,21 +268,23 @@
 				52EA10E92B76AF18002FD37C /* NumberFormatter.swift in Sources */,
 				52E8D48C2B76D2EA009130A6 /* NoteDetailsView.swift in Sources */,
 				52B398C02B714AEF006A02EA /* ShoppingListScreen.swift in Sources */,
+				5217FE522B81559300144D12 /* ChatControler.swift in Sources */,
 				52B398E72B7420BB006A02EA /* ItemPickerView.swift in Sources */,
 				5288A9822B7127FF00F7D1C6 /* Invariant_shopApp.swift in Sources */,
-				52B398D02B71908B006A02EA /* ItemCardEdit.swift in Sources */,
+				52B398D02B71908B006A02EA /* ItemEditView.swift in Sources */,
 				52B398C62B715E8D006A02EA /* TitleView.swift in Sources */,
 				52EA10E12B764B97002FD37C /* CardModifier.swift in Sources */,
 				52B398CA2B71680F006A02EA /* NavigationShoppingView.swift in Sources */,
 				52B398D92B72B550006A02EA /* DataManager.swift in Sources */,
-				52B398DF2B72F249006A02EA /* ItemNotesCardView.swift in Sources */,
-				52B398E52B7419D2006A02EA /* EditeNoteView.swift in Sources */,
+				52B398DF2B72F249006A02EA /* ItemCardNotesView.swift in Sources */,
+				52B398E52B7419D2006A02EA /* EditNoteView.swift in Sources */,
 				52B398DB2B72E2DF006A02EA /* NotesListScreen.swift in Sources */,
 				52EA10E52B7657AA002FD37C /* ImageNavigationModifier.swift in Sources */,
+				5217FE572B815AF900144D12 /* AiChatView.swift in Sources */,
 				52EA10E72B767D66002FD37C /* TitleTextModifier.swift in Sources */,
 				52EA10E32B764FA0002FD37C /* ItemTextModifier.swift in Sources */,
 				52B398D22B725321006A02EA /* ItemCardAddView.swift in Sources */,
-				52B398E12B73A3A1006A02EA /* NotesAddView.swift in Sources */,
+				52B398E12B73A3A1006A02EA /* AddNotesView.swift in Sources */,
 				52B398DD2B72E356006A02EA /* NavigationNotesView.swift in Sources */,
 				52B398C82B71618B006A02EA /* ItemCardView.swift in Sources */,
 			);
@@ -477,6 +489,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5217FE532B8158C900144D12 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 		52B398B82B714904006A02EA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -496,6 +516,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5217FE542B8158C900144D12 /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5217FE532B8158C900144D12 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
 		52B398B92B714905006A02EA /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 52B398B82B714904006A02EA /* XCRemoteSwiftPackageReference "Alamofire" */;

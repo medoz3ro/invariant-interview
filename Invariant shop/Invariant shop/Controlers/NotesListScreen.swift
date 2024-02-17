@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NotesListScreen: View {
     @ObservedObject var rootViewManager: RootViewManager
+    @State private var isAiChatViewPresented = false
     @State private var notes: [Note] = []
     @State private var selectedNote: Note?
     @State private var currentSort: SortType = .titleAscendingCreationDateDescending
@@ -78,8 +79,6 @@ struct NotesListScreen: View {
             VStack(spacing: 10) {
                 VStack(spacing: 0) {
                     Color("Title")
-                        .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
-                        .edgesIgnoringSafeArea(.top)
                     
                     TitleView(title: "Notes")
                 }
@@ -99,11 +98,37 @@ struct NotesListScreen: View {
             NavigationNotesView(rootViewManager: rootViewManager, onSort: self.toggleSort, addNote: self.addNote)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.isAiChatViewPresented.toggle()
+                    }) {
+                        ZStack {
+                            Circle()
+                                .foregroundColor(Color("aibackground").opacity(0.5))
+                                .frame(width: 50, height: 50)
+                            Text("AI")
+                                .foregroundColor(Color("Text"))
+                                .font(.headline)
+                        }
+                        .padding(16)
+                    }
+                }
+                .padding(.bottom, 20)
+            }
         }
         .onAppear(perform: {
             loadNotes()
             currentSort = .titleAscendingCreationDateDescending
         })
+        
+        .sheet(isPresented: $isAiChatViewPresented) {
+                    AiChatView()
+                }
+        
         .sheet(item: $selectedNote) { selectedNote in
             EditNoteView(note: .constant(selectedNote), onSave: { updatedNote in
                 saveNote(updatedNote)
