@@ -22,16 +22,22 @@ class RootViewManager: ObservableObject {
 struct Invariant_shopApp: App {
     @StateObject private var rootViewManager = RootViewManager()
     
+    let openAIService = OpenAIService(apiKey: "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")
+    var chatController: ChatController?
+
+    init() {
+        chatController = ChatController(openAIService: openAIService)
+    }
+
     var body: some Scene {
         WindowGroup {
             switch rootViewManager.currentView {
             case .shoppingList:
-                ShoppingListScreen(rootViewManager: rootViewManager)
+                ShoppingListScreen(rootViewManager: rootViewManager, chatController: chatController!)
             case .notesList:
-                NotesListScreen(rootViewManager: rootViewManager)
+                NotesListScreen(rootViewManager: rootViewManager, chatController: chatController!)
             }
         }
     }
 }
-
 

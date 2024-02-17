@@ -87,30 +87,64 @@ class DataManager :  ObservableObject {
     }
     
     
+    
+    
+    
+    
+
+
     func processInputText(_ input: String) {
+        let lowercasedInput = input.lowercased()
         
-        if input.lowercased().contains("kupiti u") {
-           
+        // Check if input matches the expected format
+        if let range = lowercasedInput.range(of: "from "), let colonRange = input.range(of: ":") {
+            // Extract store name and items string
+            let storeName = String(input[range.upperBound..<colonRange.lowerBound]).trimmingCharacters(in: .whitespaces)
+            let itemsString = String(input[colonRange.upperBound...]).trimmingCharacters(in: .whitespaces)
             
-            let noteParts = input.components(separatedBy: ":")
-            let title = noteParts.first ?? "Shopping Note"
-            let detail = noteParts.count > 1 ? noteParts[1] : ""
-            let note = Note(title: title, note: detail)
-            saveNote(note)
-        } else {
-            // Assume the input is an item list
-            let itemsDescriptions = input.split(separator: ",")
+            // Split items string by comma
+            let itemComponents = itemsString.split(separator: ",")
+            
+            // Initialize arrays to store items and their quantities
             var items = [Item]()
-            for itemDescription in itemsDescriptions {
-                let parts = itemDescription.split(separator: " ")
-                if parts.count >= 2, let quantity = Double(parts[0]) {
-                    let name = parts[1...].joined(separator: " ")
-                    let item = Item(name: name, quantity: quantity)
-                    items.append(item)
+            
+            // Iterate over item components
+            for itemComponent in itemComponents {
+                // Split item component by space
+                let parts = itemComponent.trimmingCharacters(in: .whitespaces).split(separator: " ")
+                
+                // Ensure parts contain at least 2 components (item name and quantity)
+                guard parts.count >= 2, let quantity = Double(parts.last!) else {
+                    // Handle invalid input for item
+                    continue
                 }
+                
+                // Extract item name
+                let name = parts.dropLast().joined(separator: " ").trimmingCharacters(in: .whitespaces)
+                
+                // Create item instance
+                let item = Item(name: name, quantity: quantity)
+                
+                // Add item to shopping list
+                items.append(item)
             }
+            
+            // Save items to shopping list
             saveItems(items)
             
+            // Create note for the store
+            let note = Note(title: storeName, note: itemsString)
+            
+            // Save note
+            saveNote(note)
+        } else {
+            // Handle case where input doesn't match expected format
+            print("Invalid input format.")
         }
     }
+
+
+
+
+
 }

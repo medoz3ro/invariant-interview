@@ -14,10 +14,14 @@ struct ShoppingListScreen: View {
     @State private var selectedItem: Item?
     @State private var currentSort: SortType = .nameAscendingIdDescending
     private let dataManager = DataManager()
+    var chatController: ChatController
+
     
     
-    public init(rootViewManager: RootViewManager) {
+    public init(rootViewManager: RootViewManager, chatController: ChatController) {
         self.rootViewManager = rootViewManager
+        self.chatController = chatController
+
     }
     
     
@@ -153,8 +157,8 @@ struct ShoppingListScreen: View {
         })
         
         .sheet(isPresented: $isAiChatViewPresented) {
-                    AiChatView()
-                }
+            AiChatView(chatController: chatController)
+        }
         
         
         .sheet(item: $selectedItem) { selectedItem in
@@ -174,9 +178,9 @@ struct ShoppingListScreen: View {
 
 struct ShoppingListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let rootViewManager = RootViewManager()
-        
-        ShoppingListScreen(rootViewManager: rootViewManager)
+        let openAIService = OpenAIService(apiKey: "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")
+        let chatController = ChatController(openAIService: openAIService)
+        ShoppingListScreen(rootViewManager: RootViewManager(), chatController: chatController)
     }
 }
 

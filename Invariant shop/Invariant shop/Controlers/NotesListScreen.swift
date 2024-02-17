@@ -7,10 +7,14 @@ struct NotesListScreen: View {
     @State private var selectedNote: Note?
     @State private var currentSort: SortType = .titleAscendingCreationDateDescending
     private let dataManager = DataManager()
+    var chatController: ChatController
+
     
-    public init(rootViewManager: RootViewManager) {
+    public init(rootViewManager: RootViewManager, chatController: ChatController) {
         self.rootViewManager = rootViewManager
+        self.chatController = chatController
     }
+
     
     private func loadNotes() {
         notes = dataManager.loadNotes()
@@ -126,8 +130,8 @@ struct NotesListScreen: View {
         })
         
         .sheet(isPresented: $isAiChatViewPresented) {
-                    AiChatView()
-                }
+            AiChatView(chatController: chatController)
+        }
         
         .sheet(item: $selectedNote) { selectedNote in
             EditNoteView(note: .constant(selectedNote), onSave: { updatedNote in
@@ -142,9 +146,12 @@ struct NotesListScreen: View {
 
 struct NotesListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NotesListScreen(rootViewManager: RootViewManager())
+        let openAIService = OpenAIService(apiKey: "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")
+        let chatController = ChatController(openAIService: openAIService)
+        NotesListScreen(rootViewManager: RootViewManager(), chatController: chatController)
     }
 }
+
 
 
 
