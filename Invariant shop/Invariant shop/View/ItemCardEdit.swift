@@ -46,14 +46,22 @@ struct ItemEditView: View {
                     TextField("Quantity", text: $itemQuantityString)
                         .keyboardType(.decimalPad)
                         .onChange(of: itemQuantityString) { newValue in
-                            let filtered = newValue.filter { "0123456789.".contains($0) }
-                            if filtered == newValue, filtered.filter({ $0 == "." }).count <= 1 {
-                                itemQuantityString = filtered // Valid input: only digits and max one decimal point
+                            let correctedValue = newValue.replacingOccurrences(of: ",", with: ".")
+                            if correctedValue != newValue {
+                                itemQuantityString = correctedValue
                             } else {
-                                itemQuantityString = String(filtered.prefix(while: { $0 != "." })) + filtered.split(separator: ".").prefix(2).joined(separator: ".")
+                                // Additional filtering logic here, if needed
+                                let filtered = correctedValue.filter { "0123456789.".contains($0) }
+                                if filtered.filter({ $0 == "." }).count <= 1 {
+                                    itemQuantityString = filtered // Only digits and at most one decimal point
+                                } else {
+                                    // Handle multiple dots if necessary, for example:
+                                    itemQuantityString = String(filtered.prefix(while: { $0 != "." })) + filtered.split(separator: ".").prefix(2).joined(separator: ".")
+                                }
                             }
                         }
-
+                    
+                    
                     Section {
                         if item != nil {
                             Button("Delete Item", role: .destructive) {

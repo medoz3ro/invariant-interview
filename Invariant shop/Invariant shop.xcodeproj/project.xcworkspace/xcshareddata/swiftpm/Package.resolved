@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "openaiswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/adamrushy/OpenAISwift",
-      "state" : {
-        "revision" : "ca66fb720d6ebb657601db5a0852b830ae310a4c",
-        "version" : "1.4.1"
-      }
-    },
-    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",

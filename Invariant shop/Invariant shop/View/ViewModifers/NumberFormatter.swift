@@ -14,6 +14,8 @@ extension NumberFormatter {
         formatter.maximumFractionDigits = 3 // Maximum number of digits after the decimal
         formatter.minimumFractionDigits = 0 // Minimum number of digits after the decimal - this removes trailing zeros
         formatter.roundingMode = .halfUp // Defines how numbers are rounded
+        formatter.decimalSeparator = "."
+        formatter.groupingSeparator = ","
         return formatter
     }
 }

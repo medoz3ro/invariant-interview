@@ -5,7 +5,6 @@ class DataManager :  ObservableObject {
     private let itemsKey = "items"
     private let notesKey = "notes"
     
-    static let shared = DataManager()
     
     
     func saveItems(_ items: [Item]) {
@@ -85,66 +84,4 @@ class DataManager :  ObservableObject {
         notes.removeAll { $0.id == note.id }
         saveNotes(notes)
     }
-    
-    
-    
-    
-    
-    
-
-
-    func processInputText(_ input: String) {
-        let lowercasedInput = input.lowercased()
-        
-        // Check if input matches the expected format
-        if let range = lowercasedInput.range(of: "from "), let colonRange = input.range(of: ":") {
-            // Extract store name and items string
-            let storeName = String(input[range.upperBound..<colonRange.lowerBound]).trimmingCharacters(in: .whitespaces)
-            let itemsString = String(input[colonRange.upperBound...]).trimmingCharacters(in: .whitespaces)
-            
-            // Split items string by comma
-            let itemComponents = itemsString.split(separator: ",")
-            
-            // Initialize arrays to store items and their quantities
-            var items = [Item]()
-            
-            // Iterate over item components
-            for itemComponent in itemComponents {
-                // Split item component by space
-                let parts = itemComponent.trimmingCharacters(in: .whitespaces).split(separator: " ")
-                
-                // Ensure parts contain at least 2 components (item name and quantity)
-                guard parts.count >= 2, let quantity = Double(parts.last!) else {
-                    // Handle invalid input for item
-                    continue
-                }
-                
-                // Extract item name
-                let name = parts.dropLast().joined(separator: " ").trimmingCharacters(in: .whitespaces)
-                
-                // Create item instance
-                let item = Item(name: name, quantity: quantity)
-                
-                // Add item to shopping list
-                items.append(item)
-            }
-            
-            // Save items to shopping list
-            saveItems(items)
-            
-            // Create note for the store
-            let note = Note(title: storeName, note: itemsString)
-            
-            // Save note
-            saveNote(note)
-        } else {
-            // Handle case where input doesn't match expected format
-            print("Invalid input format.")
-        }
-    }
-
-
-
-
-
 }

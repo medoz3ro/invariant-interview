@@ -2,19 +2,14 @@ import SwiftUI
 
 struct NotesListScreen: View {
     @ObservedObject var rootViewManager: RootViewManager
-    @State private var isAiChatViewPresented = false
     @State private var notes: [Note] = []
     @State private var selectedNote: Note?
     @State private var currentSort: SortType = .titleAscendingCreationDateDescending
     private let dataManager = DataManager()
-    var chatController: ChatController
-
     
-    public init(rootViewManager: RootViewManager, chatController: ChatController) {
+    public init(rootViewManager: RootViewManager) {
         self.rootViewManager = rootViewManager
-        self.chatController = chatController
     }
-
     
     private func loadNotes() {
         notes = dataManager.loadNotes()
@@ -83,6 +78,8 @@ struct NotesListScreen: View {
             VStack(spacing: 10) {
                 VStack(spacing: 0) {
                     Color("Title")
+                        .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
                     
                     TitleView(title: "Notes")
                 }
@@ -102,37 +99,11 @@ struct NotesListScreen: View {
             NavigationNotesView(rootViewManager: rootViewManager, onSort: self.toggleSort, addNote: self.addNote)
                 .frame(maxWidth: .infinity, maxHeight: 20, alignment: .bottom)
                 .background(Color("Bottom").edgesIgnoringSafeArea(.bottom).opacity(0))
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.isAiChatViewPresented.toggle()
-                    }) {
-                        ZStack {
-                            Circle()
-                                .foregroundColor(Color("aibackground").opacity(0.5))
-                                .frame(width: 50, height: 50)
-                            Text("AI")
-                                .foregroundColor(Color("Text"))
-                                .font(.headline)
-                        }
-                        .padding(16)
-                    }
-                }
-                .padding(.bottom, 20)
-            }
         }
         .onAppear(perform: {
             loadNotes()
             currentSort = .titleAscendingCreationDateDescending
         })
-        
-        .sheet(isPresented: $isAiChatViewPresented) {
-            AiChatView(chatController: chatController)
-        }
-        
         .sheet(item: $selectedNote) { selectedNote in
             EditNoteView(note: .constant(selectedNote), onSave: { updatedNote in
                 saveNote(updatedNote)
@@ -146,12 +117,9 @@ struct NotesListScreen: View {
 
 struct NotesListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let openAIService = OpenAIService(apiKey: "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")
-        let chatController = ChatController(openAIService: openAIService)
-        NotesListScreen(rootViewManager: RootViewManager(), chatController: chatController)
+        NotesListScreen(rootViewManager: RootViewManager())
     }
 }
-
 
 
 
